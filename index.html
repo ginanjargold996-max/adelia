@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Andelia Home Spa | A Private Sanctuary</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BACKGROUND LIQUID ANIMATION -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- =========================================
+         HALAMAN 1: BERANDA (HOME)
+         ========================================= -->
+    <div id="page-home" class="page-view active">
+        
+        <!-- FLOATING NAVBAR -->
+        <header class="floating-header">
+            <div class="nav-container">
+                <a href="#" class="brand" onclick="switchPage('home')">
+                    <div class="brand-logo-container">
+                        <img src="logo-putih.png" alt="Andelia" class="brand-logo logo-top">
+                        <img src="logo-orig.png" alt="Andelia" class="brand-logo logo-scrolled">
+                    </div>
+                </a>
+                
+                <div class="nav-center">
+                    <nav class="nav-links" id="nav-links">
+                        <a href="#beranda" data-i18n="nav_home">BERANDA</a>
+                        <a href="#layanan" data-i18n="nav_services">LAYANAN</a>
+                        <a href="#kontak" data-i18n="nav_contact">KONTAK</a>
+                    </nav>
+                </div>
+                
+                <div class="nav-actions">
+                    <div class="switcher-group">
+                        <div class="lang-switcher">
+                            <button class="lang-btn active" data-lang="id">ID</button>
+                            <button class="lang-btn" data-lang="en">EN</button>
+                            <button class="lang-btn" data-lang="cn">CN</button>
+                            <button class="lang-btn" data-lang="jp">JP</button>
+                        </div>
+                        <select id="currency-select" class="currency-select">
+                            <option value="IDR">IDR</option>
+                            <option value="USD">USD</option>
+                            <option value="SGD">SGD</option>
+                            <option value="MYR">MYR</option>
+                            <option value="CNY">CNY</option>
+                            <option value="JPY">JPY</option>
+                        </select>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="beranda">
+            <div class="hero-bg" style="background-image: url('https://i.pinimg.com/736x/c9/c3/31/c9c331b21588c50fa720b9ad4fc48b13.jpg');"></div>
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="hero-logo-center reveal">
+                    <img src="logo.png" alt="Andelia Home Spa" style="height: 120px; margin-bottom: 20px;">
+                </div>
+                
+                <div class="hero-badge reveal">
+                    <span class="dot"></span> <span data-i18n="hero_badge">HOME SERVICE MASSAGE BANDUNG</span>
+                </div>
+                
+                <h1 class="reveal" data-i18n="hero_title">Nikmati Layanan Massage & Spa<br>Tanpa Keluar Rumah</h1>
+                
+                <p class="reveal" data-i18n="hero_subtitle">Dengan terapis terlatih dan berpengalaman, Andelia Home Spa hadir untuk memberikan layanan spa dan pijat berkualitas langsung ke pintu rumah Anda.</p>
+                
+                <div class="hero-buttons reveal">
+                    <a href="#layanan" class="btn btn-primary" data-i18n="hero_btn_services">LIHAT LAYANAN</a>
+                    <a href="https://wa.me/6285817487847" class="btn btn-glass" target="_blank" data-i18n="hero_btn_contact">HUBUNGI KAMI</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FITUR / TRUST BADGES -->
+        <section class="features-section reveal">
+            <div class="wrap">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="num">01</span>
+                        <h4 data-i18n="feat_1_title">TERAPIS</h4>
+                        <p data-i18n="feat_1_sub">Profesional & Terlatih</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="num">02</span>
+                        <h4 data-i18n="feat_2_title">TERAPIS SEHAT</h4>
+                        <p data-i18n="feat_2_sub">Protokol Kesehatan Ketat</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="num">03</span>
+                        <h4 data-i18n="feat_3_title">RESPON CEPAT</h4>
+                        <p data-i18n="feat_3_sub">One Day Service</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="num">04</span>
+                        <h4 data-i18n="feat_4_title">HARGA HEMAT</h4>
+                        <p data-i18n="feat_4_sub">Free Ongkos Transport</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="num">05</span>
+                        <h4 data-i18n="feat_5_title">BAHAN ALAMI</h4>
+                        <p data-i18n="feat_5_sub">Produk Aman & Halal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICELIST SECTION -->
+        <section class="pricelist-section" id="layanan">
+            <div class="wrap">
+                <div class="section-header reveal">
+                    <span class="category-label" data-i18n="price_label">DAFTAR HARGA</span>
+                    <h2 data-i18n="price_title">Pilih Layanan <em>Favoritmu</em></h2>
+                </div>
+                
+                <div class="pricing-grid">
+                    
+                    <!-- 1. Relaxation Massage -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_body_massage">RELAXATION MASSAGE</span>
+                        <div class="price-display">
+                            <span class="amount">125k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_duration">DURASI:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="125000" data-label="60 Menit">60 MENIT</button>
+                            <button class="dur-btn" data-price="175000" data-label="90 Menit">90 MENIT</button>
+                            <button class="dur-btn" data-price="225000" data-label="120 Menit">120 MENIT</button>
+                        </div>
+                        <h3 class="service-title">Relaxation Massage</h3>
+                        <p class="service-desc">Full Body Massage With Hot Stone.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 2. Body Scrub -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_body_scrub">BODY SCRUB</span>
+                        <div class="price-display">
+                            <span class="amount">130k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_option">PILIHAN:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="130000" data-label="Including Body Mask">SESI TUNGGAL</button>
+                        </div>
+                        <h3 class="service-title">Body Scrub</h3>
+                        <p class="service-desc">Including Body Mask. Mengangkat sel kulit mati agar kulit lebih halus dan cerah.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 3. Foot Reflexy Therapy -->
+                    <div class="price-card active-card reveal">
+                        <div class="best-seller-tag" data-i18n="price_popular">TERPOPULER</div>
+                        <span class="category" data-i18n="cat_body_reflex">FOOT REFLEXY THERAPY</span>
+                        <div class="price-display">
+                            <span class="amount">175k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_duration">DURASI:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="175000" data-label="60 Menit">60 MENIT</button>
+                            <button class="dur-btn" data-price="200000" data-label="90 Menit">90 MENIT</button>
+                            <button class="dur-btn" data-price="250000" data-label="120 Menit">120 MENIT</button>
+                        </div>
+                        <h3 class="service-title">Foot Reflexy Therapy</h3>
+                        <p class="service-desc">With Hot Stone. Terapi refleksi kaki untuk menghilangkan pegal dan lelah.</p>
+                        <a href="#" class="btn-order active-btn" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 4. Foot, Head & Shoulder Massage -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_combo">FOOT, HEAD & SHOULDER MASSAGE</span>
+                        <div class="price-display">
+                            <span class="amount">125k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_duration">DURASI:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="125000" data-label="60 Menit">60 MENIT</button>
+                            <button class="dur-btn" data-price="175000" data-label="90 Menit">90 MENIT</button>
+                            <button class="dur-btn" data-price="225000" data-label="120 Menit">120 MENIT</button>
+                        </div>
+                        <h3 class="service-title">Foot, Head & Shoulder</h3>
+                        <p class="service-desc">Pijat fokus pada area kaki, kepala, dan pundak untuk meredakan stres.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 5. Manicure Pedicure -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_nails">MANICURE PEDICURE</span>
+                        <div class="price-display">
+                            <span class="amount">120k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_type">JENIS:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="120000" data-label="Manicure">MANICURE</button>
+                            <button class="dur-btn" data-price="140000" data-label="Pedicure">PEDICURE</button>
+                            <button class="dur-btn" data-price="50000" data-label="Extra Nail Polish">EXTRA POLISH</button>
+                            <button class="dur-btn" data-price="250000" data-label="Mani-pedi (Without Nail Polish)">MANI-PEDI</button>
+                            <button class="dur-btn" data-price="100000" data-label="Extra Nail Polish (Premium)">EXTRA POLISH 2</button>
+                        </div>
+                        <h3 class="service-title">Manicure Pedicure</h3>
+                        <p class="service-desc">Perawatan kuku tangan dan kaki agar tampak rapi, bersih, dan terawat.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 6. Hair Treatment -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_hair">HAIR TREATMENT</span>
+                        <div class="price-display">
+                            <span class="amount">75k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_type">JENIS:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="75000" data-label="Natural Blow / Hair Straightening">NATURAL BLOW</button>
+                            <button class="dur-btn" data-price="85000" data-label="Special Styling Blow / Hair Curling">SPECIAL STYLING</button>
+                            <button class="dur-btn" data-price="150000" data-label="Creambath + Hair Dry">CREAMBATH</button>
+                            <button class="dur-btn" data-price="150000" data-label="Hair Mask + Hair Dry">HAIR MASK</button>
+                            <button class="dur-btn" data-price="175000" data-label="Hair Spa + Hair Dry">HAIR SPA</button>
+                        </div>
+                        <h3 class="service-title">Hair Treatment</h3>
+                        <p class="service-desc">Perawatan rambut profesional untuk kesehatan dan keindahan rambut Anda.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 7. Acupressure / Totok -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_acupressure">ACUPRESSURE / TOTOK</span>
+                        <div class="price-display">
+                            <span class="amount">100k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_area">AREA:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="100000" data-label="Face (30 Menit)">FACE (30m)</button>
+                            <button class="dur-btn" data-price="125000" data-label="V (30 Menit)">V (30m)</button>
+                        </div>
+                        <h3 class="service-title">Acupressure / Totok</h3>
+                        <p class="service-desc">Terapi totok pada titik saraf tertentu untuk melancarkan peredaran darah.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 8. Waxing -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_waxing">WAXING</span>
+                        <div class="price-display">
+                            <span class="amount">75k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_area">AREA:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="75000" data-label="Under Arms Wax">UNDER ARMS</button>
+                            <button class="dur-btn" data-price="95000" data-label="Lower Arms Wax">LOWER ARMS</button>
+                            <button class="dur-btn" data-price="135000" data-label="Full Arms Wax">FULL ARMS</button>
+                            <button class="dur-btn" data-price="115000" data-label="Lower Legs Wax">LOWER LEGS</button>
+                            <button class="dur-btn" data-price="200000" data-label="Full Legs Wax">FULL LEGS</button>
+                        </div>
+                        <h3 class="service-title">Waxing</h3>
+                        <p class="service-desc">Perawatan penghilang bulu yang aman dan nyaman untuk kulit Anda.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 9. Ratus -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_ratus">RATUS</span>
+                        <div class="price-display">
+                            <span class="amount">75k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_option">PILIHAN:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="75000" data-label="Ratus">SESI RATUS</button>
+                        </div>
+                        <h3 class="service-title">Ratus</h3>
+                        <p class="service-desc">Perawatan tradisional untuk menjaga kebersihan dan kesehatan organ kewanitaan.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 10. Breast Care -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_breast">BREAST CARE</span>
+                        <div class="price-display">
+                            <span class="amount">75k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_duration">DURASI:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="75000" data-label="15 Menit">15 MENIT</button>
+                            <button class="dur-btn" data-price="90000" data-label="30 Menit">30 MENIT</button>
+                            <button class="dur-btn" data-price="120000" data-label="60 Menit">60 MENIT</button>
+                        </div>
+                        <h3 class="service-title">Breast Care</h3>
+                        <p class="service-desc">Perawatan khusus untuk kesehatan dan kenyamanan area payudara.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                    <!-- 11. Kids Massage -->
+                    <div class="price-card reveal">
+                        <span class="category" data-i18n="cat_kids">KIDS MASSAGE</span>
+                        <div class="price-display">
+                            <span class="amount">75k</span>
+                        </div>
+                        <div class="duration-label" data-i18n="price_duration">DURASI:</div>
+                        <div class="duration-options">
+                            <button class="dur-btn active" data-price="75000" data-label="15 Menit">15 MENIT</button>
+                            <button class="dur-btn" data-price="95000" data-label="30 Menit">30 MENIT</button>
+                            <button class="dur-btn" data-price="105000" data-label="60 Menit">60 MENIT</button>
+                        </div>
+                        <h3 class="service-title">Kids Massage</h3>
+                        <p class="service-desc">0-10 Years Old. Pijat lembut untuk anak yang membantu relaksasi dan pencernaan.</p>
+                        <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section reveal">
+            <div class="wrap">
+                <div class="section-header">
+                    <h2 data-i18n="faq_title">Pertanyaan <em>Umum</em></h2>
+                </div>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary><span data-i18n="faq_q1">Apakah terapis datang ke rumah?</span> <i class="fas fa-plus"></i></summary>
+                        <p data-i18n="faq_a1">Ya, Andelia menyediakan layanan home spa di area Bandung. Sampaikan area lokasi kepada admin untuk memastikan apakah alamatmu masuk jangkauan layanan.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary><span data-i18n="faq_q2">Bagaimana cara memesan sesi?</span> <i class="fas fa-plus"></i></summary>
+                        <p data-i18n="faq_a2">Pilih layanan di halaman ini, klik tombol pesan, dan kamu akan diarahkan ke halaman konfirmasi untuk mengisi jadwal. Pesanan diteruskan ke WhatsApp admin.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary><span data-i18n="faq_q3">Apakah ada biaya transportasi?</span> <i class="fas fa-plus"></i></summary>
+                        <p data-i18n="faq_a3">Konfirmasikan biaya transportasi dan total pembayaran kepada admin berdasarkan lokasi kunjungan sebelum menyetujui reservasi. Free ongkir untuk area tertentu.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary><span data-i18n="faq_q4">Apa yang perlu disiapkan sebelum sesi?</span> <i class="fas fa-plus"></i></summary>
+                        <p data-i18n="faq_a4">Tanyakan kebutuhan ruang dan perlengkapan kepada admin saat konfirmasi. Kami menyediakan handuk, kain alas, dan minyak pijat.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="main-footer" id="kontak">
+            <div class="wrap footer-top">
+                <div class="footer-col">
+                    <a href="#" onclick="switchPage('home'); return false;">
+                        <img src="logo.png" alt="Andelia Home Spa" class="footer-logo">
+                    </a>
+                    <p style="margin-top: 15px; color: rgba(253,247,235,0.7); font-size: 0.9rem;" data-i18n="footer_desc">Layanan home spa & massage panggilan di Bandung. Relaksasi premium langsung di rumah Anda.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="footer_contact">Kontak Kami</h4>
+                    <ul class="contact-list">
+                        <li><i class="fab fa-whatsapp"></i> +62 858-1748-7847</li>
+                        <li><i class="fas fa-envelope"></i> official@andeliahomespa.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Bandung, Jawa Barat</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="footer_hours">Jam Operasional</h4>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-clock"></i> <span data-i18n="footer_day_mon">Senin–Sabtu: 08.00–19.00 WIB</span></li>
+                        <li><i class="fas fa-clock"></i> <span data-i18n="footer_day_sun">Minggu: Tutup</span></li>
+                    </ul>
+                    <div class="footer-social" style="margin-top: 20px; display:flex; gap:15px; font-size:1.2rem;">
+                        <a href="https://www.instagram.com/andeliahomespa" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@andelia.home.spa" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61594298781038" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom wrap">
+                <span>© 2026 Andelia Home Spa. All rights reserved.</span>
+                <span>Powerd By</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- =========================================
+         HALAMAN 2: CHECKOUT
+         ========================================= -->
+    <div id="page-checkout" class="page-view">
+        
+        <header class="checkout-header">
+            <div class="wrap checkout-nav">
+                <a href="#" class="brand" onclick="switchPage('home')">
+                    <img src="logo.png" alt="Andelia Home Spa" class="brand-logo">
+                </a>
+                <button class="btn-back" onclick="switchPage('home')">
+                    <i class="fas fa-arrow-left"></i> <span data-i18n="checkout_back">Kembali</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="checkout-wrapper wrap">
+            
+            <div class="checkout-left">
+                <h1 class="checkout-title" data-i18n="checkout_title_1">Paket Per Pelanggan</h1>
+                
+                <!-- PAX SECTION DIKEMBALIKAN KE SINI -->
+                <div class="pax-section">
+                    <div class="pax-header">
+                        <span data-i18n="checkout_pax_label">JUMLAH PELANGGAN (PAX)</span>
+                        <span class="pax-active-text" data-i18n="checkout_pax_active">1 Pelanggan</span>
+                    </div>
+                    <div class="pax-buttons">
+                        <button class="pax-btn active">1</button>
+                        <button class="pax-btn">2</button>
+                        <button class="pax-btn">3</button>
+                        <button class="pax-btn">4</button>
+                        <button class="pax-btn">5</button>
+                        <button class="pax-btn">6</button>
+                        <button class="pax-btn pax-other"><span data-i18n="checkout_pax_other">Lain</span> <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-header">
+                        <h2><span class="num-badge">1</span> <span data-i18n="checkout_detail_title">Detail Pelanggan ke-1</span></h2>
+                        <button class="btn-add-package"><i class="fas fa-plus-circle"></i> <span data-i18n="checkout_add_pkg">TAMBAH PAKET</span></button>
+                    </div>
+                    
+                    <div class="gender-options">
+                        <div class="gender-group">
+                            <span class="gender-label" data-i18n="checkout_gender_cust">GENDER PEMESAN</span>
+                            <div class="toggle-group">
+                                <button type="button" class="toggle-btn" data-value="PRIA" data-i18n="checkout_male">PRIA</button>
+                                <button type="button" class="toggle-btn active" data-value="WANITA" data-i18n="checkout_female">WANITA</button>
+                            </div>
+                        </div>
+                        <!-- HANYA WANITA UNTUK GENDER TERAPIS -->
+                        <div class="gender-group">
+                            <span class="gender-label" data-i18n="checkout_gender_therapist">GENDER TERAPIS</span>
+                            <div class="toggle-group">
+                                <button type="button" class="toggle-btn active" data-value="WANITA" data-i18n="checkout_female">WANITA</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-list-header">
+                        <span data-i18n="checkout_cart_name">NAMA PAKET</span>
+                        <span data-i18n="checkout_cart_duration">DURASI</span>
+                        <span data-i18n="checkout_cart_price">HARGA</span>
+                    </div>
+                    <div class="cart-item" id="cart-item-container">
+                        <div class="item-info">
+                            <span class="item-cat" id="item-category">KATEGORI</span>
+                            <h3 class="item-name" id="item-name">Nama Layanan</h3>
+                        </div>
+                        <div class="item-duration" id="item-duration">-</div>
+                        <div class="item-price" id="item-price">Rp 0</div>
+                        <button class="btn-remove" onclick="switchPage('home')"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <div class="total-box">
+                    <span class="total-label" data-i18n="checkout_total">TOTAL PESANAN</span>
+                    <span class="total-amount" id="total-amount">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="checkout-right">
+                <h1 class="checkout-title" data-i18n="checkout_title_2">Konfirmasi Pesanan</h1>
+                
+                <form id="checkout-form" class="confirm-form">
+                    <div class="form-group">
+                        <label data-i18n="form_name">NAMA PELANGGAN (PEMESAN)</label>
+                        <input type="text" id="cust-name" placeholder="Nama Pelanggan" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="form_wa">NOMOR WHATSAPP</label>
+                        <div class="phone-input">
+                            <select class="country-code">
+                                <option value="+62">ID +62</option>
+                            </select>
+                            <input type="tel" id="cust-phone" placeholder="81234567890" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="form_address">ALAMAT LENGKAP</label>
+                        <textarea id="cust-address" rows="3" placeholder="Alamat lengkap customer..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="form_date">TANGGAL BOOKING</label>
+                            <input type="date" id="book-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="form_time">JAM BOOKING</label>
+                            <input type="time" id="book-time" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="form_payment">METODE PEMBAYARAN</label>
+                        <div class="toggle-group payment-toggle">
+                            <button type="button" class="toggle-btn active" data-value="Tunai" data-i18n="form_cash">TUNAI</button>
+                            <button type="button" class="toggle-btn" data-value="Transfer" data-i18n="form_transfer">TRANSFER</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="form_source">TAU ANDELIA DARI MANA?</label>
+                        <select id="source" class="custom-select">
+                            <option value="Instagram">Instagram</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Google">Google / Search</option>
+                            <option value="Teman" data-i18n="form_source_friend">Rekomendasi Teman</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="form_notes">CATATAN TAMBAHAN</label>
+                        <textarea id="notes" rows="3" placeholder="Contoh: Patokan rumah, atau permintaan khusus..." data-i18n-placeholder="form_notes_ph"></textarea>
+                    </div>
+
+                    <div class="voucher-box">
+                        <label data-i18n="form_voucher">PUNYA VOUCHER?</label>
+                        <div class="voucher-input-group">
+                            <input type="text" placeholder="MASUKKAN KODE..." data-i18n-placeholder="form_voucher_ph">
+                            <button type="button" data-i18n="form_apply">PASANG</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-wa">
+                        <i class="fab fa-whatsapp"></i> <span data-i18n="form_submit">KONFIRMASI VIA WHATSAPP</span>
+                    </button>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <nav class="mobile-bottom-nav">
+        <div class="liquid-indicator" id="liquid-indicator"></div>
+        
+        <a href="#beranda" class="bottom-nav-item active" data-index="0">
+            <i class="fas fa-home"></i>
+            <span data-i18n="nav_home">BERANDA</span>
+        </a>
+        
+        <a href="#layanan" class="bottom-nav-item" data-index="1">
+            <i class="fas fa-spa"></i>
+            <span data-i18n="nav_services">LAYANAN</span>
+        </a>
+        
+        <a href="#kontak" class="bottom-nav-item" data-index="2">
+            <i class="fas fa-headset"></i>
+            <span data-i18n="nav_contact">KONTAK</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
