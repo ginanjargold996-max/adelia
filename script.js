@@ -252,14 +252,12 @@ try {
 } catch(e) {}
 
 // =========================================
-// STORAGE KEYS & ADMIN
+// STORAGE KEYS
 // =========================================
 const ADMIN_KEYS = {
     SESSION: 'andelia_admin_session',
     VOUCHERS: 'andelia_vouchers',
-    SERVICES: 'andelia_services',
-    SEEDED_V: 'andelia_vouchers_seeded',
-    SEEDED_S: 'andelia_services_seeded'
+    SERVICES: 'andelia_services'
 };
 const DEFAULT_ADMIN = { username: 'admin', password: 'andelia2024' };
 
@@ -279,18 +277,16 @@ function saveServices(list) {
 }
 
 function seedDefaultVouchers() {
-    if (localStorage.getItem(ADMIN_KEYS.SEEDED_V) === 'true') return;
     if (getVouchers().length === 0) {
         saveVouchers([
             { id: 1, code: 'SPA10', type: 'percent', value: 0.1, is_active: true, createdAt: new Date().toISOString() },
             { id: 2, code: 'NEW20K', type: 'fixed', value: 20000, is_active: true, createdAt: new Date().toISOString() }
         ]);
     }
-    localStorage.setItem(ADMIN_KEYS.SEEDED_V, 'true');
 }
 
 // =========================================
-// DEFAULT SERVICES (Seeder)
+// DEFAULT SERVICES
 // =========================================
 const DEFAULT_SERVICES = [
     { id: 1, category: 'RELAXATION MASSAGE', categoryKey: 'cat_body_massage', name: 'Relaxation Massage', description: 'Full Body Massage With Hot Stone.', is_active: true, isPopular: false,
@@ -358,12 +354,41 @@ const DEFAULT_SERVICES = [
       ] }
 ];
 
+// ✅ FIX: Merge logic — pastikan 11 default SELALU ada
 function seedDefaultServices() {
-    if (localStorage.getItem(ADMIN_KEYS.SEEDED_S) === 'true') return;
-    if (getServices().length === 0) {
+    const current = getServices();
+
+    // Kasus 1: Kosong → isi semua default
+    if (!Array.isArray(current) || current.length === 0) {
         saveServices(DEFAULT_SERVICES);
+        return;
     }
-    localStorage.setItem(ADMIN_KEYS.SEEDED_S, 'true');
+
+    // Kasus 2: Migrasi format lama + merge dengan default
+    const migratedCurrent = current.map(s => {
+        if (!s || typeof s !== 'object') return null;
+        // Sudah format baru
+        if (s.categoryKey && Array.isArray(s.options) && s.options.length > 0) return s;
+        // Format lama → migrasi
+        return {
+            id: s.id || Date.now(),
+            category: s.category || 'LAINNYA',
+            categoryKey: (s.category || 'lainnya').toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+            name: s.name || 'Layanan',
+            description: s.description || '',
+            options: Array.isArray(s.options) ? s.options : [],
+            is_active: s.is_active !== false,
+            isPopular: s.isPopular || false,
+            createdAt: s.createdAt || new Date().toISOString()
+        };
+    }).filter(s => s && s.name && Array.isArray(s.options) && s.options.length > 0);
+
+    // Cari default yang belum ada
+    const existingNames = migratedCurrent.map(s => s.name.toLowerCase().trim());
+    const missing = DEFAULT_SERVICES.filter(d => !existingNames.includes(d.name.toLowerCase().trim()));
+
+    // Simpan gabungan
+    saveServices([...migratedCurrent, ...missing]);
 }
 
 function findActiveVoucher(code) {
@@ -416,23 +441,29 @@ window.adminLogout = function() {
 };
 
 // =========================================
-// 🎯 RENDER SERVICES DINAMIS (FIX UTAMA)
+// RENDER SERVICES DINAMIS
 // =========================================
 function renderServicesHome() {
     const grid = document.querySelector('.pricing-grid');
     if (!grid) return;
 
-    const services = getServices().filter(s => s.is_active);
+    let services = getServices();
+    if (!Array.isArray(services) || services.length === 0) {
+        services = DEFAULT_SERVICES;
+        saveServices(DEFAULT_SERVICES);
+    }
+
+    services = services.filter(s => s && s.is_active && Array.isArray(s.options) && s.options.length > 0);
 
     if (services.length === 0) {
-        grid.innerHTML = '<p style="text-align:center;width:100%;color:var(--muted);padding:40px 20px;">Belum ada layanan tersedia.</p>';
+        grid.innerHTML = '<p style="text-align:center;width:100%;color:var(--muted);padding:40px 20px;">Belum ada layanan aktif.</p>';
         return;
     }
 
     grid.innerHTML = services.map(s => {
-        const firstOpt = (s.options && s.options[0]) || { price: 0, label: '-' };
+        const firstOpt = s.options[0] || { price: 0, label: '-' };
         const categoryKey = s.categoryKey || (s.category || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
-        const opts = (s.options || []).map((o, i) =>
+        const opts = s.options.map((o, i) =>
             `<button class="dur-btn ${i===0?'active':''}" data-price="${o.price}" data-label="${o.label}">${(o.label||'').toUpperCase()}</button>`
         ).join('');
         const popularBadge = s.isPopular ? '<div class="best-seller-tag" data-i18n="price_popular">TERPOPULER</div>' : '';
@@ -453,12 +484,10 @@ function renderServicesHome() {
         `;
     }).join('');
 
-    // Re-bind & re-translate
     bindPriceCards();
     refreshTranslation();
 }
 
-// Bind events ke card yang (baru) di-render
 function bindPriceCards() {
     document.querySelectorAll('.price-card').forEach(card => {
         if (card.dataset.bound === 'true') return;
@@ -500,7 +529,6 @@ function bindPriceCards() {
     });
 }
 
-// Refresh translation untuk card yang baru di-render
 function refreshTranslation() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const k = el.getAttribute('data-i18n');
@@ -515,7 +543,6 @@ function refreshTranslation() {
         const label = btn.getAttribute('data-label');
         btn.textContent = (currentLang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
     });
-    // Deskripsi
     const descKeyByCat = {
         cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
         cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
@@ -677,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateAllPrices();
     }
 
-    // 🎯 RENDER LAYANAN DARI LOCALSTORAGE
+    // 🎯 RENDER LAYANAN
     renderServicesHome();
 
     langBtns.forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang'))));
@@ -1034,7 +1061,7 @@ window.adminToggleService = function(id) {
         s.is_active = !s.is_active;
         saveServices(list);
         adminRenderServices();
-        renderServicesHome(); // 🎯 RE-RENDER HOMEPAGE
+        renderServicesHome();
         adminToast('Status diubah', 'info');
     }
 };
@@ -1046,7 +1073,7 @@ window.adminDeleteService = function(id) {
     adminConfirm('Hapus Layanan?', `Layanan "${s.name}" akan dihapus permanen.`, () => {
         saveServices(list.filter(x => x.id !== id));
         adminRenderServices();
-        renderServicesHome(); // 🎯 RE-RENDER HOMEPAGE
+        renderServicesHome();
         adminToast('Layanan dihapus');
     });
 };
@@ -1079,7 +1106,7 @@ function resetOptionRowsDash() {
     `;
 }
 
-// Admin init handlers
+// Admin form handlers
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('admin-login-form');
     if (loginForm) {
@@ -1170,7 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             saveServices(list);
             adminRenderServices();
-            renderServicesHome(); // 🎯 RE-RENDER HOMEPAGE
+            renderServicesHome();
             closeServiceForm();
             sForm.reset();
             resetOptionRowsDash();
