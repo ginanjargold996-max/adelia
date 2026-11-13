@@ -252,13 +252,14 @@ try {
 } catch(e) {}
 
 // =========================================
-// STORAGE VOUCHERS & SERVICES
+// STORAGE KEYS & ADMIN
 // =========================================
 const ADMIN_KEYS = {
     SESSION: 'andelia_admin_session',
     VOUCHERS: 'andelia_vouchers',
     SERVICES: 'andelia_services',
-    SEEDED: 'andelia_vouchers_seeded'
+    SEEDED_V: 'andelia_vouchers_seeded',
+    SEEDED_S: 'andelia_services_seeded'
 };
 const DEFAULT_ADMIN = { username: 'admin', password: 'andelia2024' };
 
@@ -276,21 +277,97 @@ function getServices() {
 function saveServices(list) {
     localStorage.setItem(ADMIN_KEYS.SERVICES, JSON.stringify(list));
 }
+
 function seedDefaultVouchers() {
-    if (localStorage.getItem(ADMIN_KEYS.SEEDED) !== 'true') {
-        const existing = getVouchers();
-        if (existing.length === 0) {
-            saveVouchers([
-                { id: 1, code: 'SPA10', type: 'percent', value: 0.1, is_active: true, createdAt: new Date().toISOString() },
-                { id: 2, code: 'NEW20K', type: 'fixed', value: 20000, is_active: true, createdAt: new Date().toISOString() }
-            ]);
-        }
-        localStorage.setItem(ADMIN_KEYS.SEEDED, 'true');
+    if (localStorage.getItem(ADMIN_KEYS.SEEDED_V) === 'true') return;
+    if (getVouchers().length === 0) {
+        saveVouchers([
+            { id: 1, code: 'SPA10', type: 'percent', value: 0.1, is_active: true, createdAt: new Date().toISOString() },
+            { id: 2, code: 'NEW20K', type: 'fixed', value: 20000, is_active: true, createdAt: new Date().toISOString() }
+        ]);
     }
+    localStorage.setItem(ADMIN_KEYS.SEEDED_V, 'true');
 }
+
+// =========================================
+// DEFAULT SERVICES (Seeder)
+// =========================================
+const DEFAULT_SERVICES = [
+    { id: 1, category: 'RELAXATION MASSAGE', categoryKey: 'cat_body_massage', name: 'Relaxation Massage', description: 'Full Body Massage With Hot Stone.', is_active: true, isPopular: false,
+      options: [
+        { label: '60 Menit', price: 125000 },
+        { label: '90 Menit', price: 175000 },
+        { label: '120 Menit', price: 225000 }
+      ] },
+    { id: 2, category: 'BODY SCRUB', categoryKey: 'cat_body_scrub', name: 'Body Scrub', description: 'Including Body Mask. Mengangkat sel kulit mati agar kulit lebih halus dan cerah.', is_active: true, isPopular: false,
+      options: [{ label: 'Including Body Mask', price: 130000 }] },
+    { id: 3, category: 'FOOT REFLEXY THERAPY', categoryKey: 'cat_body_reflex', name: 'Foot Reflexy Therapy', description: 'With Hot Stone. Terapi refleksi kaki untuk menghilangkan pegal dan lelah.', is_active: true, isPopular: true,
+      options: [
+        { label: '60 Menit', price: 175000 },
+        { label: '90 Menit', price: 200000 },
+        { label: '120 Menit', price: 250000 }
+      ] },
+    { id: 4, category: 'FOOT, HEAD & SHOULDER MASSAGE', categoryKey: 'cat_combo', name: 'Foot, Head & Shoulder', description: 'Pijat fokus pada area kaki, kepala, dan pundak untuk meredakan stres.', is_active: true, isPopular: false,
+      options: [
+        { label: '60 Menit', price: 125000 },
+        { label: '90 Menit', price: 175000 },
+        { label: '120 Menit', price: 225000 }
+      ] },
+    { id: 5, category: 'MANICURE PEDICURE', categoryKey: 'cat_nails', name: 'Manicure Pedicure', description: 'Perawatan kuku tangan dan kaki agar tampak rapi, bersih, dan terawat.', is_active: true, isPopular: false,
+      options: [
+        { label: 'Manicure', price: 120000 },
+        { label: 'Pedicure', price: 140000 },
+        { label: 'Extra Nail Polish', price: 50000 },
+        { label: 'Mani-pedi (Without Nail Polish)', price: 250000 },
+        { label: 'Extra Nail Polish (Premium)', price: 100000 }
+      ] },
+    { id: 6, category: 'HAIR TREATMENT', categoryKey: 'cat_hair', name: 'Hair Treatment', description: 'Perawatan rambut profesional untuk kesehatan dan keindahan rambut Anda.', is_active: true, isPopular: false,
+      options: [
+        { label: 'Natural Blow / Hair Straightening', price: 75000 },
+        { label: 'Special Styling Blow / Hair Curling', price: 85000 },
+        { label: 'Creambath + Hair Dry', price: 150000 },
+        { label: 'Hair Mask + Hair Dry', price: 150000 },
+        { label: 'Hair Spa + Hair Dry', price: 175000 }
+      ] },
+    { id: 7, category: 'ACUPRESSURE / TOTOK', categoryKey: 'cat_acupressure', name: 'Acupressure / Totok', description: 'Terapi totok pada titik saraf tertentu untuk melancarkan peredaran darah.', is_active: true, isPopular: false,
+      options: [
+        { label: 'Face (30 Menit)', price: 100000 },
+        { label: 'V (30 Menit)', price: 125000 }
+      ] },
+    { id: 8, category: 'WAXING', categoryKey: 'cat_waxing', name: 'Waxing', description: 'Perawatan penghilang bulu yang aman dan nyaman untuk kulit Anda.', is_active: true, isPopular: false,
+      options: [
+        { label: 'Under Arms Wax', price: 75000 },
+        { label: 'Lower Arms Wax', price: 95000 },
+        { label: 'Full Arms Wax', price: 135000 },
+        { label: 'Lower Legs Wax', price: 115000 },
+        { label: 'Full Legs Wax', price: 200000 }
+      ] },
+    { id: 9, category: 'RATUS', categoryKey: 'cat_ratus', name: 'Ratus', description: 'Perawatan tradisional untuk menjaga kebersihan dan kesehatan organ kewanitaan.', is_active: true, isPopular: false,
+      options: [{ label: 'Ratus', price: 75000 }] },
+    { id: 10, category: 'BREAST CARE', categoryKey: 'cat_breast', name: 'Breast Care', description: 'Perawatan khusus untuk kesehatan dan kenyamanan area payudara.', is_active: true, isPopular: false,
+      options: [
+        { label: '15 Menit', price: 75000 },
+        { label: '30 Menit', price: 90000 },
+        { label: '60 Menit', price: 120000 }
+      ] },
+    { id: 11, category: 'KIDS MASSAGE', categoryKey: 'cat_kids', name: 'Kids Massage', description: '0-10 Years Old. Pijat lembut untuk anak yang membantu relaksasi dan pencernaan.', is_active: true, isPopular: false,
+      options: [
+        { label: '15 Menit', price: 75000 },
+        { label: '30 Menit', price: 95000 },
+        { label: '60 Menit', price: 105000 }
+      ] }
+];
+
+function seedDefaultServices() {
+    if (localStorage.getItem(ADMIN_KEYS.SEEDED_S) === 'true') return;
+    if (getServices().length === 0) {
+        saveServices(DEFAULT_SERVICES);
+    }
+    localStorage.setItem(ADMIN_KEYS.SEEDED_S, 'true');
+}
+
 function findActiveVoucher(code) {
-    const all = getVouchers();
-    return all.find(v => v.code === code && v.is_active);
+    return getVouchers().find(v => v.code === code && v.is_active);
 }
 
 // =========================================
@@ -339,10 +416,128 @@ window.adminLogout = function() {
 };
 
 // =========================================
+// 🎯 RENDER SERVICES DINAMIS (FIX UTAMA)
+// =========================================
+function renderServicesHome() {
+    const grid = document.querySelector('.pricing-grid');
+    if (!grid) return;
+
+    const services = getServices().filter(s => s.is_active);
+
+    if (services.length === 0) {
+        grid.innerHTML = '<p style="text-align:center;width:100%;color:var(--muted);padding:40px 20px;">Belum ada layanan tersedia.</p>';
+        return;
+    }
+
+    grid.innerHTML = services.map(s => {
+        const firstOpt = (s.options && s.options[0]) || { price: 0, label: '-' };
+        const categoryKey = s.categoryKey || (s.category || '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+        const opts = (s.options || []).map((o, i) =>
+            `<button class="dur-btn ${i===0?'active':''}" data-price="${o.price}" data-label="${o.label}">${(o.label||'').toUpperCase()}</button>`
+        ).join('');
+        const popularBadge = s.isPopular ? '<div class="best-seller-tag" data-i18n="price_popular">TERPOPULER</div>' : '';
+        const activeClass = s.isPopular ? 'active-card' : '';
+        const btnActiveClass = s.isPopular ? 'active-btn' : '';
+
+        return `
+            <div class="price-card reveal in-view ${activeClass}">
+                ${popularBadge}
+                <span class="category" data-i18n="${categoryKey}">${s.category}</span>
+                <div class="price-display"><span class="amount">${formatPriceShort(firstOpt.price)}</span></div>
+                <div class="duration-label" data-i18n="price_duration">DURASI:</div>
+                <div class="duration-options">${opts}</div>
+                <h3 class="service-title">${s.name}</h3>
+                <p class="service-desc">${s.description || ''}</p>
+                <a href="#" class="btn-order ${btnActiveClass}" target="_blank" data-i18n="price_order">PESAN PAKET</a>
+            </div>
+        `;
+    }).join('');
+
+    // Re-bind & re-translate
+    bindPriceCards();
+    refreshTranslation();
+}
+
+// Bind events ke card yang (baru) di-render
+function bindPriceCards() {
+    document.querySelectorAll('.price-card').forEach(card => {
+        if (card.dataset.bound === 'true') return;
+        card.dataset.bound = 'true';
+
+        const durBtns = card.querySelectorAll('.dur-btn');
+        const priceDisplay = card.querySelector('.amount');
+        const waBtn = card.querySelector('.btn-order');
+
+        durBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                durBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const newPrice = parseInt(this.getAttribute('data-price'));
+                priceDisplay.classList.remove('price-pulse');
+                void priceDisplay.offsetWidth;
+                priceDisplay.textContent = formatPriceShort(newPrice);
+                priceDisplay.classList.add('price-pulse');
+            });
+        });
+
+        if (waBtn) {
+            waBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const serviceName = card.querySelector('.service-title').textContent;
+                const categoryText = card.querySelector('.category').getAttribute('data-i18n') || card.querySelector('.category').textContent;
+                const activeBtn = card.querySelector('.dur-btn.active');
+                if (!activeBtn) return;
+                cart.push({
+                    category: categoryText,
+                    service: serviceName,
+                    duration: activeBtn.getAttribute('data-label'),
+                    price: parseInt(activeBtn.getAttribute('data-price'))
+                });
+                updateCheckoutDisplay();
+                switchPage('checkout');
+            });
+        }
+    });
+}
+
+// Refresh translation untuk card yang baru di-render
+function refreshTranslation() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (translations[currentLang] && translations[currentLang][k]) el.innerHTML = translations[currentLang][k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.getAttribute('data-i18n-placeholder');
+        if (translations[currentLang] && translations[currentLang][k]) el.placeholder = translations[currentLang][k];
+    });
+    document.querySelectorAll('.dur-btn').forEach(btn => {
+        if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
+        const label = btn.getAttribute('data-label');
+        btn.textContent = (currentLang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
+    });
+    // Deskripsi
+    const descKeyByCat = {
+        cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
+        cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
+        cat_acupressure: 'desc_acupressure', cat_waxing: 'desc_waxing', cat_breast: 'desc_breast',
+        cat_kids: 'desc_kids', cat_ratus: 'desc_ratus'
+    };
+    document.querySelectorAll('.price-card').forEach(card => {
+        const catKey = card.querySelector('.category')?.getAttribute('data-i18n');
+        const descKey = descKeyByCat[catKey];
+        const descEl = card.querySelector('.service-desc');
+        if (descEl && descKey && translations[currentLang] && translations[currentLang][descKey]) {
+            descEl.textContent = translations[currentLang][descKey];
+        }
+    });
+}
+
+// =========================================
 // MAIN INIT
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
     seedDefaultVouchers();
+    seedDefaultServices();
 
     const langBtns = document.querySelectorAll('.lang-btn');
     const currencySelect = document.getElementById('currency-select');
@@ -354,7 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.getElementById('nav-links');
     const revealElements = document.querySelectorAll('.reveal');
-    const priceCards = document.querySelectorAll('.price-card');
     const sections = document.querySelectorAll('section[id], footer[id]');
     const navItems = document.querySelectorAll('.nav-links a');
     const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
@@ -453,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function updateAllPrices() {
-        priceCards.forEach(card => {
+        document.querySelectorAll('.price-card').forEach(card => {
             const activeBtn = card.querySelector('.dur-btn.active');
             if (activeBtn) {
                 const p = parseInt(activeBtn.getAttribute('data-price'));
@@ -471,33 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.remove('active');
             if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
         });
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const k = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][k]) el.innerHTML = translations[lang][k];
-        });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const k = el.getAttribute('data-i18n-placeholder');
-            if (translations[lang] && translations[lang][k]) el.placeholder = translations[lang][k];
-        });
-        document.querySelectorAll('.dur-btn').forEach(btn => {
-            if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
-            const label = btn.getAttribute('data-label');
-            btn.textContent = (lang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
-        });
-        const descKeyByCat = {
-            cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
-            cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
-            cat_acupressure: 'desc_acupressure', cat_waxing: 'desc_waxing', cat_breast: 'desc_breast',
-            cat_kids: 'desc_kids', cat_ratus: 'desc_ratus'
-        };
-        document.querySelectorAll('.price-card').forEach(card => {
-            const catKey = card.querySelector('.category')?.getAttribute('data-i18n');
-            const descKey = descKeyByCat[catKey];
-            const descEl = card.querySelector('.service-desc');
-            if (descEl && descKey && translations[lang] && translations[lang][descKey]) {
-                descEl.textContent = translations[lang][descKey];
-            }
-        });
+        refreshTranslation();
         updatePaxText();
         updateAllPrices();
     }
@@ -509,8 +677,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateAllPrices();
     }
 
-    if (voucherInput) voucherInput.value = '';
-    if (voucherMsg) voucherMsg.style.display = 'none';
+    // 🎯 RENDER LAYANAN DARI LOCALSTORAGE
+    renderServicesHome();
 
     langBtns.forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang'))));
     if (currencySelect) currencySelect.addEventListener('change', (e) => applyCurrency(e.target.value));
@@ -548,41 +716,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         });
     }
-
-    priceCards.forEach(card => {
-        const durBtns = card.querySelectorAll('.dur-btn');
-        const priceDisplay = card.querySelector('.amount');
-        const waBtn = card.querySelector('.btn-order');
-
-        durBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                durBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const newPrice = parseInt(this.getAttribute('data-price'));
-                priceDisplay.classList.remove('price-pulse');
-                void priceDisplay.offsetWidth;
-                priceDisplay.textContent = formatPriceShort(newPrice);
-                priceDisplay.classList.add('price-pulse');
-            });
-        });
-
-        if (waBtn) {
-            waBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const serviceName = card.querySelector('.service-title').textContent;
-                const categoryText = card.querySelector('.category').getAttribute('data-i18n') || card.querySelector('.category').textContent;
-                const activeBtn = card.querySelector('.dur-btn.active');
-                cart.push({
-                    category: categoryText,
-                    service: serviceName,
-                    duration: activeBtn.getAttribute('data-label'),
-                    price: parseInt(activeBtn.getAttribute('data-price'))
-                });
-                updateCheckoutDisplay();
-                switchPage('checkout');
-            });
-        }
-    });
 
     paxBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -796,7 +929,6 @@ function closeConfirm() {
 }
 window.closeConfirm = closeConfirm;
 
-// Voucher
 function adminRenderVouchers() {
     const list = getVouchers();
     const tbody = document.getElementById('dash-voucher-tbody');
@@ -859,7 +991,6 @@ window.closeVoucherForm = function() {
     document.getElementById('dash-voucher-form').classList.remove('show');
 };
 
-// Service
 function adminRenderServices() {
     const list = getServices();
     const tbody = document.getElementById('dash-service-tbody');
@@ -903,6 +1034,7 @@ window.adminToggleService = function(id) {
         s.is_active = !s.is_active;
         saveServices(list);
         adminRenderServices();
+        renderServicesHome(); // 🎯 RE-RENDER HOMEPAGE
         adminToast('Status diubah', 'info');
     }
 };
@@ -914,6 +1046,7 @@ window.adminDeleteService = function(id) {
     adminConfirm('Hapus Layanan?', `Layanan "${s.name}" akan dihapus permanen.`, () => {
         saveServices(list.filter(x => x.id !== id));
         adminRenderServices();
+        renderServicesHome(); // 🎯 RE-RENDER HOMEPAGE
         adminToast('Layanan dihapus');
     });
 };
@@ -946,7 +1079,7 @@ function resetOptionRowsDash() {
     `;
 }
 
-// Admin init on load
+// Admin init handlers
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('admin-login-form');
     if (loginForm) {
@@ -1024,16 +1157,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (options.length === 0) return adminToast('Minimal 1 pilihan durasi', 'error');
             const list = getServices();
+            const categoryKey = category.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
             list.push({
-                id: Date.now(), category, name, description: desc,
-                options, is_active: true, createdAt: new Date().toISOString()
+                id: Date.now(),
+                category,
+                categoryKey,
+                name, description: desc,
+                options,
+                is_active: true,
+                isPopular: false,
+                createdAt: new Date().toISOString()
             });
             saveServices(list);
             adminRenderServices();
+            renderServicesHome(); // 🎯 RE-RENDER HOMEPAGE
             closeServiceForm();
             sForm.reset();
             resetOptionRowsDash();
-            adminToast('Layanan ditambahkan');
+            adminToast('Layanan ditambahkan ke website!');
         });
     }
 });
