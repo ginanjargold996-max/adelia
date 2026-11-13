@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Andelia Home Spa | A Private Sanctuary</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS Eksternal -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- BACKGROUND LIQUID ANIMATION -->
     <div class="liquid-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -26,11 +20,10 @@
     </div>
 
     <!-- =========================================
-         HALAMAN 1: BERANDA (HOME)
+         HALAMAN 1: BERANDA
          ========================================= -->
     <div id="page-home" class="page-view active">
         
-        <!-- FLOATING NAVBAR -->
         <header class="floating-header">
             <div class="nav-container">
                 <a href="#" class="brand" onclick="switchPage('home')">
@@ -73,7 +66,6 @@
             </div>
         </header>
 
-        <!-- HERO SECTION -->
         <section class="hero-section" id="beranda">
             <div class="hero-bg" style="background-image: url('https://i.pinimg.com/736x/c9/c3/31/c9c331b21588c50fa720b9ad4fc48b13.jpg');"></div>
             <div class="hero-overlay"></div>
@@ -98,7 +90,6 @@
             </div>
         </section>
 
-        <!-- FITUR / TRUST BADGES -->
         <section class="features-section reveal">
             <div class="wrap">
                 <div class="features-grid">
@@ -131,7 +122,6 @@
             </div>
         </section>
 
-        <!-- PRICELIST SECTION -->
         <section class="pricelist-section" id="layanan">
             <div class="wrap">
                 <div class="section-header reveal">
@@ -140,13 +130,9 @@
                 </div>
                 
                 <div class="pricing-grid">
-                    
-                    <!-- 1. Relaxation Massage -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_body_massage">RELAXATION MASSAGE</span>
-                        <div class="price-display">
-                            <span class="amount">125k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">125k</span></div>
                         <div class="duration-label" data-i18n="price_duration">DURASI:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="125000" data-label="60 Menit">60 MENIT</button>
@@ -158,12 +144,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 2. Body Scrub -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_body_scrub">BODY SCRUB</span>
-                        <div class="price-display">
-                            <span class="amount">130k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">130k</span></div>
                         <div class="duration-label" data-i18n="price_option">PILIHAN:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="130000" data-label="Including Body Mask">SESI TUNGGAL</button>
@@ -173,13 +156,10 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 3. Foot Reflexy Therapy -->
                     <div class="price-card active-card reveal">
                         <div class="best-seller-tag" data-i18n="price_popular">TERPOPULER</div>
                         <span class="category" data-i18n="cat_body_reflex">FOOT REFLEXY THERAPY</span>
-                        <div class="price-display">
-                            <span class="amount">175k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">175k</span></div>
                         <div class="duration-label" data-i18n="price_duration">DURASI:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="175000" data-label="60 Menit">60 MENIT</button>
@@ -191,12 +171,9 @@
                         <a href="#" class="btn-order active-btn" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 4. Foot, Head & Shoulder Massage -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_combo">FOOT, HEAD & SHOULDER MASSAGE</span>
-                        <div class="price-display">
-                            <span class="amount">125k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">125k</span></div>
                         <div class="duration-label" data-i18n="price_duration">DURASI:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="125000" data-label="60 Menit">60 MENIT</button>
@@ -208,12 +185,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 5. Manicure Pedicure -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_nails">MANICURE PEDICURE</span>
-                        <div class="price-display">
-                            <span class="amount">120k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">120k</span></div>
                         <div class="duration-label" data-i18n="price_type">JENIS:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="120000" data-label="Manicure">MANICURE</button>
@@ -227,12 +201,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 6. Hair Treatment -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_hair">HAIR TREATMENT</span>
-                        <div class="price-display">
-                            <span class="amount">75k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">75k</span></div>
                         <div class="duration-label" data-i18n="price_type">JENIS:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="75000" data-label="Natural Blow / Hair Straightening">NATURAL BLOW</button>
@@ -246,12 +217,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 7. Acupressure / Totok -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_acupressure">ACUPRESSURE / TOTOK</span>
-                        <div class="price-display">
-                            <span class="amount">100k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">100k</span></div>
                         <div class="duration-label" data-i18n="price_area">AREA:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="100000" data-label="Face (30 Menit)">FACE (30m)</button>
@@ -262,12 +230,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 8. Waxing -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_waxing">WAXING</span>
-                        <div class="price-display">
-                            <span class="amount">75k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">75k</span></div>
                         <div class="duration-label" data-i18n="price_area">AREA:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="75000" data-label="Under Arms Wax">UNDER ARMS</button>
@@ -281,12 +246,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 9. Ratus -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_ratus">RATUS</span>
-                        <div class="price-display">
-                            <span class="amount">75k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">75k</span></div>
                         <div class="duration-label" data-i18n="price_option">PILIHAN:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="75000" data-label="Ratus">SESI RATUS</button>
@@ -296,12 +258,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 10. Breast Care -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_breast">BREAST CARE</span>
-                        <div class="price-display">
-                            <span class="amount">75k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">75k</span></div>
                         <div class="duration-label" data-i18n="price_duration">DURASI:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="75000" data-label="15 Menit">15 MENIT</button>
@@ -313,12 +272,9 @@
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
 
-                    <!-- 11. Kids Massage -->
                     <div class="price-card reveal">
                         <span class="category" data-i18n="cat_kids">KIDS MASSAGE</span>
-                        <div class="price-display">
-                            <span class="amount">75k</span>
-                        </div>
+                        <div class="price-display"><span class="amount">75k</span></div>
                         <div class="duration-label" data-i18n="price_duration">DURASI:</div>
                         <div class="duration-options">
                             <button class="dur-btn active" data-price="75000" data-label="15 Menit">15 MENIT</button>
@@ -329,12 +285,10 @@
                         <p class="service-desc">0-10 Years Old. Pijat lembut untuk anak yang membantu relaksasi dan pencernaan.</p>
                         <a href="#" class="btn-order" target="_blank" data-i18n="price_order">PESAN PAKET</a>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- FAQ -->
         <section class="faq-section reveal">
             <div class="wrap">
                 <div class="section-header">
@@ -361,7 +315,6 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer class="main-footer" id="kontak">
             <div class="wrap footer-top">
                 <div class="footer-col">
@@ -370,7 +323,6 @@
                     </a>
                     <p style="margin-top: 15px; color: rgba(253,247,235,0.7); font-size: 0.9rem;" data-i18n="footer_desc">Layanan home spa & massage panggilan di Bandung. Relaksasi premium langsung di rumah Anda.</p>
                 </div>
-                
                 <div class="footer-col">
                     <h4 data-i18n="footer_contact">Kontak Kami</h4>
                     <ul class="contact-list">
@@ -379,7 +331,6 @@
                         <li><i class="fas fa-map-marker-alt"></i> Bandung, Jawa Barat</li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
                     <h4 data-i18n="footer_hours">Jam Operasional</h4>
                     <ul class="contact-list">
@@ -392,10 +343,9 @@
                     </div>
                 </div>
             </div>
-            
             <div class="footer-bottom wrap">
                 <span>© 2026 Andelia Home Spa. All rights reserved.</span>
-                <span>Powerd By</span>
+                <span>Powerd By · <a href="#" onclick="handleAdminAccess(); return false;" style="opacity:0.5; font-size:0.7rem;">Admin</a></span>
             </div>
         </footer>
     </div>
@@ -404,7 +354,6 @@
          HALAMAN 2: CHECKOUT
          ========================================= -->
     <div id="page-checkout" class="page-view">
-        
         <header class="checkout-header">
             <div class="wrap checkout-nav">
                 <a href="#" class="brand" onclick="switchPage('home')">
@@ -417,11 +366,9 @@
         </header>
 
         <main class="checkout-wrapper wrap">
-            
             <div class="checkout-left">
                 <h1 class="checkout-title" data-i18n="checkout_title_1">Paket Per Pelanggan</h1>
                 
-                <!-- PAX SECTION DIKEMBALIKAN KE SINI -->
                 <div class="pax-section">
                     <div class="pax-header">
                         <span data-i18n="checkout_pax_label">JUMLAH PELANGGAN (PAX)</span>
@@ -452,7 +399,6 @@
                                 <button type="button" class="toggle-btn active" data-value="WANITA" data-i18n="checkout_female">WANITA</button>
                             </div>
                         </div>
-                        <!-- HANYA WANITA UNTUK GENDER TERAPIS -->
                         <div class="gender-group">
                             <span class="gender-label" data-i18n="checkout_gender_therapist">GENDER TERAPIS</span>
                             <div class="toggle-group">
@@ -466,21 +412,10 @@
                         <span data-i18n="checkout_cart_duration">DURASI</span>
                         <span data-i18n="checkout_cart_price">HARGA</span>
                     </div>
-                    <div class="cart-item" id="cart-item-container">
-                        <div class="item-info">
-                            <span class="item-cat" id="item-category">KATEGORI</span>
-                            <h3 class="item-name" id="item-name">Nama Layanan</h3>
-                        </div>
-                        <div class="item-duration" id="item-duration">-</div>
-                        <div class="item-price" id="item-price">Rp 0</div>
-                        <button class="btn-remove" onclick="switchPage('home')"><i class="fas fa-times"></i></button>
-                    </div>
+                    <div id="cart-items-container"></div>
                 </div>
 
-                <div class="total-box">
-                    <span class="total-label" data-i18n="checkout_total">TOTAL PESANAN</span>
-                    <span class="total-amount" id="total-amount">Rp 0</span>
-                </div>
+                <div class="total-box"></div>
             </div>
 
             <div class="checkout-right">
@@ -495,9 +430,7 @@
                     <div class="form-group">
                         <label data-i18n="form_wa">NOMOR WHATSAPP</label>
                         <div class="phone-input">
-                            <select class="country-code">
-                                <option value="+62">ID +62</option>
-                            </select>
+                            <select class="country-code"><option value="+62">ID +62</option></select>
                             <input type="tel" id="cust-phone" placeholder="81234567890" required>
                         </div>
                     </div>
@@ -544,9 +477,10 @@
                     <div class="voucher-box">
                         <label data-i18n="form_voucher">PUNYA VOUCHER?</label>
                         <div class="voucher-input-group">
-                            <input type="text" placeholder="MASUKKAN KODE..." data-i18n-placeholder="form_voucher_ph">
-                            <button type="button" data-i18n="form_apply">PASANG</button>
+                            <input type="text" id="voucher-input" placeholder="MASUKKAN KODE..." data-i18n-placeholder="form_voucher_ph">
+                            <button type="button" id="btn-apply-voucher" data-i18n="form_apply">PASANG</button>
                         </div>
+                        <small id="voucher-msg" style="display:none;margin-top:8px;font-weight:600;"></small>
                     </div>
 
                     <button type="submit" class="btn-submit-wa">
@@ -554,23 +488,247 @@
                     </button>
                 </form>
             </div>
-
         </main>
     </div>
 
+    <!-- =========================================
+         HALAMAN 3: ADMIN LOGIN
+         ========================================= -->
+    <div id="page-admin-login" class="page-view admin-mode-page">
+        <div class="admin-login-wrapper">
+            <div class="admin-login-card">
+                <div class="admin-brand">
+                    <div class="admin-brand-icon"><i class="fas fa-leaf"></i></div>
+                    <h1>ANDELIA</h1>
+                    <span>OWNER PANEL</span>
+                </div>
+
+                <form id="admin-login-form">
+                    <div class="admin-form-group">
+                        <label>USERNAME</label>
+                        <div class="admin-input-wrap">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="admin-username" placeholder="Masukkan username" required>
+                        </div>
+                    </div>
+                    <div class="admin-form-group">
+                        <label>PASSWORD</label>
+                        <div class="admin-input-wrap">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="admin-password" placeholder="Masukkan password" required>
+                        </div>
+                    </div>
+                    <div id="admin-login-error" class="admin-login-error"></div>
+                    <button type="submit" class="admin-btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Masuk ke Dashboard
+                    </button>
+                </form>
+
+                <p class="admin-login-hint">
+                    <i class="fas fa-info-circle"></i> Demo: <code>admin</code> / <code>andelia2024</code>
+                </p>
+
+                <a href="#" onclick="switchPage('home'); return false;" class="admin-back-link">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         HALAMAN 4: ADMIN DASHBOARD
+         ========================================= -->
+    <div id="page-admin-dashboard" class="page-view admin-mode-page">
+        <header class="dash-header">
+            <div class="dash-brand">
+                <i class="fas fa-leaf"></i>
+                <div>
+                    <h1>ANDELIA</h1>
+                    <span>OWNER PANEL</span>
+                </div>
+            </div>
+            <div class="dash-user">
+                <div class="user-avatar" id="dash-user-avatar">A</div>
+                <div class="user-info">
+                    <strong id="dash-user-name">admin</strong>
+                    <span>Owner</span>
+                </div>
+                <button class="btn-logout" onclick="adminLogout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <nav class="dash-tabs">
+            <button class="dash-tab-btn active" data-tab="vouchers">
+                <i class="fas fa-ticket-alt"></i> Voucher
+            </button>
+            <button class="dash-tab-btn" data-tab="services">
+                <i class="fas fa-spa"></i> Layanan
+            </button>
+            <a href="#" onclick="switchPage('home'); return false;" class="dash-tab-btn dash-tab-link">
+                <i class="fas fa-external-link-alt"></i> Website
+            </a>
+        </nav>
+
+        <main class="dash-main">
+            <section class="dash-panel active" id="dash-panel-vouchers">
+                <div class="page-header-dash">
+                    <div>
+                        <h2>Manajemen Voucher</h2>
+                        <p>Kelola kode diskon untuk pelanggan.</p>
+                    </div>
+                    <button class="btn-add-dash" onclick="openVoucherForm()">
+                        <i class="fas fa-plus"></i> Tambah Voucher
+                    </button>
+                </div>
+
+                <div class="form-card-dash" id="dash-voucher-form">
+                    <div class="form-card-header">
+                        <h3><i class="fas fa-ticket-alt"></i> Tambah Voucher</h3>
+                        <button class="btn-close-dash" onclick="closeVoucherForm()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <form id="dash-voucher-form-el" class="form-body-dash">
+                        <div class="form-row-dash">
+                            <div class="form-group-dash">
+                                <label>Kode</label>
+                                <input type="text" id="dash-v-code" placeholder="SPA10" required style="text-transform:uppercase">
+                            </div>
+                            <div class="form-group-dash">
+                                <label>Tipe Diskon</label>
+                                <select id="dash-v-type" required>
+                                    <option value="percent">Persen (%)</option>
+                                    <option value="fixed">Nominal (Rp)</option>
+                                </select>
+                            </div>
+                            <div class="form-group-dash">
+                                <label>Nilai</label>
+                                <input type="number" id="dash-v-value" placeholder="10 / 20000" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-actions-dash">
+                            <button type="button" class="btn-cancel-dash" onclick="closeVoucherForm()">Batal</button>
+                            <button type="submit" class="btn-submit-dash"><i class="fas fa-check"></i> Simpan</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-card-dash">
+                    <div class="table-header-dash">
+                        <h3>Daftar Voucher (<span id="dash-voucher-count">0</span>)</h3>
+                    </div>
+                    <div class="table-responsive-dash">
+                        <table class="data-table-dash">
+                            <thead>
+                                <tr><th>Kode</th><th>Tipe</th><th>Nilai</th><th>Status</th><th>Aksi</th></tr>
+                            </thead>
+                            <tbody id="dash-voucher-tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="empty-state-dash" id="dash-voucher-empty" style="display:none;">
+                        <i class="fas fa-ticket-alt"></i>
+                        <p>Belum ada voucher.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dash-panel" id="dash-panel-services">
+                <div class="page-header-dash">
+                    <div>
+                        <h2>Manajemen Layanan</h2>
+                        <p>Tambah, ubah, atau hapus layanan website.</p>
+                    </div>
+                    <button class="btn-add-dash" onclick="openServiceForm()">
+                        <i class="fas fa-plus"></i> Tambah Layanan
+                    </button>
+                </div>
+
+                <div class="form-card-dash" id="dash-service-form">
+                    <div class="form-card-header">
+                        <h3><i class="fas fa-spa"></i> Tambah Layanan</h3>
+                        <button class="btn-close-dash" onclick="closeServiceForm()"><i class="fas fa-times"></i></button>
+                    </div>
+                    <form id="dash-service-form-el" class="form-body-dash">
+                        <div class="form-row-dash">
+                            <div class="form-group-dash">
+                                <label>Kategori</label>
+                                <input type="text" id="dash-s-category" placeholder="RELAXATION MASSAGE" required>
+                            </div>
+                            <div class="form-group-dash">
+                                <label>Nama Layanan</label>
+                                <input type="text" id="dash-s-name" placeholder="Relaxation Massage" required>
+                            </div>
+                        </div>
+                        <div class="form-group-dash">
+                            <label>Deskripsi</label>
+                            <textarea id="dash-s-desc" rows="2" placeholder="Full Body Massage With Hot Stone"></textarea>
+                        </div>
+                        <div class="form-group-dash">
+                            <label>Pilihan Durasi & Harga</label>
+                            <div id="dash-s-options">
+                                <div class="option-row-dash">
+                                    <input type="text" class="opt-label-dash" placeholder="60 Menit">
+                                    <input type="number" class="opt-price-dash" placeholder="125000">
+                                    <button type="button" class="btn-remove-opt-dash" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-add-opt-dash" onclick="addOptionRowDash()"><i class="fas fa-plus"></i> Tambah Pilihan</button>
+                        </div>
+                        <div class="form-actions-dash">
+                            <button type="button" class="btn-cancel-dash" onclick="closeServiceForm()">Batal</button>
+                            <button type="submit" class="btn-submit-dash"><i class="fas fa-check"></i> Simpan</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-card-dash">
+                    <div class="table-header-dash">
+                        <h3>Daftar Layanan (<span id="dash-service-count">0</span>)</h3>
+                    </div>
+                    <div class="table-responsive-dash">
+                        <table class="data-table-dash">
+                            <thead>
+                                <tr><th>Kategori</th><th>Nama</th><th>Pilihan</th><th>Status</th><th>Aksi</th></tr>
+                            </thead>
+                            <tbody id="dash-service-tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="empty-state-dash" id="dash-service-empty" style="display:none;">
+                        <i class="fas fa-spa"></i>
+                        <p>Belum ada layanan.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="toast-container" id="toast-container"></div>
+        <div class="modal-overlay" id="confirm-modal">
+            <div class="modal-box">
+                <div class="modal-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3 id="confirm-title">Konfirmasi</h3>
+                <p id="confirm-message">Apakah Anda yakin?</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel-dash" onclick="closeConfirm()">Batal</button>
+                    <button class="btn-danger-dash" id="confirm-ok">Ya, Lanjutkan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/6285817487847" class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <nav class="mobile-bottom-nav">
         <div class="liquid-indicator" id="liquid-indicator"></div>
-        
         <a href="#beranda" class="bottom-nav-item active" data-index="0">
             <i class="fas fa-home"></i>
             <span data-i18n="nav_home">BERANDA</span>
         </a>
-        
         <a href="#layanan" class="bottom-nav-item" data-index="1">
             <i class="fas fa-spa"></i>
             <span data-i18n="nav_services">LAYANAN</span>
         </a>
-        
         <a href="#kontak" class="bottom-nav-item" data-index="2">
             <i class="fas fa-headset"></i>
             <span data-i18n="nav_contact">KONTAK</span>
