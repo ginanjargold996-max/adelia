@@ -53,7 +53,7 @@ const translations = {
         form_notes: "CATATAN TAMBAHAN", form_notes_ph: "Contoh: Patokan rumah, atau permintaan khusus...",
         form_voucher: "PUNYA VOUCHER?", form_voucher_ph: "MASUKKAN KODE...", form_apply: "PASANG", form_submit: "KONFIRMASI VIA WHATSAPP",
         wa_message: "Halo Andelia Home Spa, saya ingin konfirmasi pesanan:",
-        msg_voucher_valid: "Voucher berhasil dipasang!",
+        msg_voucher_valid: "Voucher berhasil dipasang! (Klik PASANG lagi untuk batalkan)",
         msg_voucher_invalid: "Kode voucher tidak valid atau sudah kedaluwarsa.",
         subtotal: "Subtotal", discount: "Diskon"
     },
@@ -108,7 +108,7 @@ const translations = {
         form_notes: "ADDITIONAL NOTES", form_notes_ph: "Example: House landmark, or special requests...",
         form_voucher: "HAVE A VOUCHER?", form_voucher_ph: "ENTER CODE...", form_apply: "APPLY", form_submit: "CONFIRM VIA WHATSAPP",
         wa_message: "Hello Andelia Home Spa, I would like to confirm the order:",
-        msg_voucher_valid: "Voucher applied successfully!",
+        msg_voucher_valid: "Voucher applied successfully! (Click APPLY again to cancel)",
         msg_voucher_invalid: "Invalid or expired voucher code.",
         subtotal: "Subtotal", discount: "Discount"
     },
@@ -163,7 +163,7 @@ const translations = {
         form_notes: "附加备注", form_notes_ph: "例如：地标建筑，或特殊要求...",
         form_voucher: "有优惠券吗？", form_voucher_ph: "输入代码...", form_apply: "应用", form_submit: "通过 WhatsApp 确认",
         wa_message: "您好 Andelia Home Spa，我想确认订单：",
-        msg_voucher_valid: "优惠券应用成功！",
+        msg_voucher_valid: "优惠券应用成功！（再次点击应用可取消）",
         msg_voucher_invalid: "优惠券代码无效或已过期。",
         subtotal: "小计", discount: "折扣"
     },
@@ -218,7 +218,7 @@ const translations = {
         form_notes: "追加のメモ", form_notes_ph: "例：家の目印、または特別なリクエスト...",
         form_voucher: "クーポンをお持ちですか？", form_voucher_ph: "コードを入力...", form_apply: "適用する", form_submit: "WhatsAppで確認する",
         wa_message: "こんにちはAndelia Home Spa、注文を確認したいです：",
-        msg_voucher_valid: "クーポンが正常に適用されました！",
+        msg_voucher_valid: "クーポンが正常に適用されました！（再度適用をクリックでキャンセル）",
         msg_voucher_invalid: "無効なクーポンコードです。",
         subtotal: "小計", discount: "割引"
     }
@@ -237,7 +237,7 @@ const currencyConfig = {
 };
 
 // =========================================
-// STATE
+// STATE GLOBAL
 // =========================================
 let currentLang = 'id';
 let currentCurrency = 'IDR';
@@ -354,22 +354,16 @@ const DEFAULT_SERVICES = [
       ] }
 ];
 
-// ✅ FIX: Merge logic — pastikan 11 default SELALU ada
 function seedDefaultServices() {
     const current = getServices();
-
-    // Kasus 1: Kosong → isi semua default
     if (!Array.isArray(current) || current.length === 0) {
         saveServices(DEFAULT_SERVICES);
         return;
     }
 
-    // Kasus 2: Migrasi format lama + merge dengan default
     const migratedCurrent = current.map(s => {
         if (!s || typeof s !== 'object') return null;
-        // Sudah format baru
         if (s.categoryKey && Array.isArray(s.options) && s.options.length > 0) return s;
-        // Format lama → migrasi
         return {
             id: s.id || Date.now(),
             category: s.category || 'LAINNYA',
@@ -383,11 +377,9 @@ function seedDefaultServices() {
         };
     }).filter(s => s && s.name && Array.isArray(s.options) && s.options.length > 0);
 
-    // Cari default yang belum ada
     const existingNames = migratedCurrent.map(s => s.name.toLowerCase().trim());
     const missing = DEFAULT_SERVICES.filter(d => !existingNames.includes(d.name.toLowerCase().trim()));
 
-    // Simpan gabungan
     saveServices([...migratedCurrent, ...missing]);
 }
 
@@ -417,33 +409,231 @@ function formatPriceFull(amountIDR) {
 }
 
 // =========================================
-// SWITCH PAGE
+// SWITCH PAGE (GLOBAL)
 // =========================================
 window.switchPage = function(pageId) {
     document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
-    document.getElementById('page-' + pageId).classList.add('active');
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
     document.body.classList.toggle('admin-mode', pageId.startsWith('admin-'));
     window.scrollTo(0, 0);
 };
 
-window.handleAdminAccess = function() {
-    if (sessionStorage.getItem(ADMIN_KEYS.SESSION)) {
-        adminInitDashboard();
-        switchPage('admin-dashboard');
+// =========================================
+// PAX TEXT (GLOBAL)
+// =========================================
+window.updatePaxText = function() {
+    const paxActiveText = document.querySelector('.pax-active-text');
+    if (!paxActiveText) return;
+    const activeBtn = document.querySelector('.pax-btn.active');
+    if (!activeBtn) return;
+    let n = activeBtn.textContent.trim().split(' ')[0];
+    if (isNaN(n) || n === '') n = '1';
+    let text = `${n} Pelanggan`;
+    if (currentLang === 'en') text = `${n} Customer${n > 1 ? 's' : ''}`;
+    else if (currentLang === 'cn') text = `${n} 位顾客`;
+    else if (currentLang === 'jp') text = `お客様 ${n}名`;
+    paxActiveText.textContent = text;
+};
+
+// =========================================
+// CHECKOUT DISPLAY (GLOBAL) — FIX BUG UTAMA
+// =========================================
+window.updateCheckoutDisplay = function() {
+    const container = document.getElementById('cart-items-container');
+    const totalBox = document.querySelector('.total-box');
+    if (!container || !totalBox) return;
+
+    let subtotal = 0;
+    container.innerHTML = '';
+
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <div class="cart-item">
+                <div class="item-info">
+                    <span class="item-cat">-</span>
+                    <h3 class="item-name">Belum ada paket dipilih</h3>
+                </div>
+            </div>`;
     } else {
-        switchPage('admin-login');
+        cart.forEach((item, i) => {
+            subtotal += item.price;
+            const catName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
+            const durName = translateLabel(item.duration);
+            container.insertAdjacentHTML('beforeend', `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <span class="item-cat">${catName}</span>
+                        <h3 class="item-name">${item.service} ${durName}</h3>
+                    </div>
+                    <div class="item-duration">${durName}</div>
+                    <div class="item-price">${formatPriceFull(item.price)}</div>
+                    <button class="btn-remove" onclick="removeCartItem(${i})"><i class="fas fa-times"></i></button>
+                </div>`);
+        });
     }
+
+    if (activeVoucherData) {
+        if (activeVoucherData.type === 'percent') discountAmount = subtotal * activeVoucherData.value;
+        else discountAmount = activeVoucherData.value;
+        if (discountAmount > subtotal) discountAmount = subtotal;
+    } else {
+        discountAmount = 0;
+    }
+
+    const finalTotal = subtotal - discountAmount;
+    let html = '';
+    if (discountAmount > 0) {
+        html = `
+            <div class="total-row">
+                <span>${translations[currentLang].subtotal}</span>
+                <span>${formatPriceFull(subtotal)}</span>
+            </div>
+            <div class="total-row discount">
+                <span>${translations[currentLang].discount} (${appliedVoucherCode})</span>
+                <span>-${formatPriceFull(discountAmount)}</span>
+            </div>
+            <div class="total-row final">
+                <span class="total-label">${translations[currentLang].checkout_total}</span>
+                <span class="total-amount">${formatPriceFull(finalTotal)}</span>
+            </div>`;
+    } else {
+        html = `
+            <div class="total-row final" style="border:none;margin-top:0;padding-top:0;">
+                <span class="total-label">${translations[currentLang].checkout_total}</span>
+                <span class="total-amount">${formatPriceFull(finalTotal)}</span>
+            </div>`;
+    }
+    totalBox.innerHTML = html;
 };
 
-window.adminLogout = function() {
-    sessionStorage.removeItem(ADMIN_KEYS.SESSION);
-    switchPage('home');
+window.removeCartItem = function(i) {
+    cart.splice(i, 1);
+    window.updateCheckoutDisplay();
 };
 
 // =========================================
-// RENDER SERVICES DINAMIS
+// UPDATE ALL PRICES (GLOBAL)
 // =========================================
-function renderServicesHome() {
+window.updateAllPrices = function() {
+    document.querySelectorAll('.price-card').forEach(card => {
+        const activeBtn = card.querySelector('.dur-btn.active');
+        if (activeBtn) {
+            const p = parseInt(activeBtn.getAttribute('data-price'));
+            const amountEl = card.querySelector('.amount');
+            if (amountEl) amountEl.textContent = formatPriceShort(p);
+        }
+    });
+    window.updateCheckoutDisplay();
+};
+
+// =========================================
+// REFRESH TRANSLATION (GLOBAL)
+// =========================================
+window.refreshTranslation = function() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (translations[currentLang] && translations[currentLang][k]) el.innerHTML = translations[currentLang][k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.getAttribute('data-i18n-placeholder');
+        if (translations[currentLang] && translations[currentLang][k]) el.placeholder = translations[currentLang][k];
+    });
+    document.querySelectorAll('.dur-btn').forEach(btn => {
+        if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
+        const label = btn.getAttribute('data-label');
+        btn.textContent = (currentLang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
+    });
+    const descKeyByCat = {
+        cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
+        cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
+        cat_acupressure: 'desc_acupressure', cat_waxing: 'desc_waxing', cat_breast: 'desc_breast',
+        cat_kids: 'desc_kids', cat_ratus: 'desc_ratus'
+    };
+    document.querySelectorAll('.price-card').forEach(card => {
+        const catKey = card.querySelector('.category')?.getAttribute('data-i18n');
+        const descKey = descKeyByCat[catKey];
+        const descEl = card.querySelector('.service-desc');
+        if (descEl && descKey && translations[currentLang] && translations[currentLang][descKey]) {
+            descEl.textContent = translations[currentLang][descKey];
+        }
+    });
+};
+
+// =========================================
+// APPLY LANGUAGE / CURRENCY (GLOBAL)
+// =========================================
+window.applyLanguage = function(lang) {
+    currentLang = lang;
+    try { localStorage.setItem('andelia_lang', lang); } catch(e) {}
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+    });
+    window.refreshTranslation();
+    window.updatePaxText();
+    window.updateAllPrices();
+};
+
+window.applyCurrency = function(currency) {
+    currentCurrency = currency;
+    try { localStorage.setItem('andelia_currency', currency); } catch(e) {}
+    const currencySelect = document.getElementById('currency-select');
+    if (currencySelect) currencySelect.value = currency;
+    window.updateAllPrices();
+};
+
+// =========================================
+// BIND PRICE CARDS (GLOBAL) — FIX BUG UTAMA
+// =========================================
+window.bindPriceCards = function() {
+    document.querySelectorAll('.price-card').forEach(card => {
+        if (card.dataset.bound === 'true') return;
+        card.dataset.bound = 'true';
+
+        const durBtns = card.querySelectorAll('.dur-btn');
+        const priceDisplay = card.querySelector('.amount');
+        const waBtn = card.querySelector('.btn-order');
+
+        durBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                durBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const newPrice = parseInt(this.getAttribute('data-price'));
+                if (priceDisplay) {
+                    priceDisplay.classList.remove('price-pulse');
+                    void priceDisplay.offsetWidth;
+                    priceDisplay.textContent = formatPriceShort(newPrice);
+                    priceDisplay.classList.add('price-pulse');
+                }
+            });
+        });
+
+        if (waBtn) {
+            waBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const serviceName = card.querySelector('.service-title').textContent;
+                const categoryText = card.querySelector('.category').getAttribute('data-i18n') || card.querySelector('.category').textContent;
+                const activeBtn = card.querySelector('.dur-btn.active');
+                if (!activeBtn) return;
+                cart.push({
+                    category: categoryText,
+                    service: serviceName,
+                    duration: activeBtn.getAttribute('data-label'),
+                    price: parseInt(activeBtn.getAttribute('data-price'))
+                });
+                // 🎯 FIX: pakai window.updateCheckoutDisplay()
+                window.updateCheckoutDisplay();
+                window.switchPage('checkout');
+            });
+        }
+    });
+};
+
+// =========================================
+// RENDER SERVICES (GLOBAL)
+// =========================================
+window.renderServicesHome = function() {
     const grid = document.querySelector('.pricing-grid');
     if (!grid) return;
 
@@ -484,478 +674,30 @@ function renderServicesHome() {
         `;
     }).join('');
 
-    bindPriceCards();
-    refreshTranslation();
-}
-
-function bindPriceCards() {
-    document.querySelectorAll('.price-card').forEach(card => {
-        if (card.dataset.bound === 'true') return;
-        card.dataset.bound = 'true';
-
-        const durBtns = card.querySelectorAll('.dur-btn');
-        const priceDisplay = card.querySelector('.amount');
-        const waBtn = card.querySelector('.btn-order');
-
-        durBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                durBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const newPrice = parseInt(this.getAttribute('data-price'));
-                priceDisplay.classList.remove('price-pulse');
-                void priceDisplay.offsetWidth;
-                priceDisplay.textContent = formatPriceShort(newPrice);
-                priceDisplay.classList.add('price-pulse');
-            });
-        });
-
-        if (waBtn) {
-            waBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const serviceName = card.querySelector('.service-title').textContent;
-                const categoryText = card.querySelector('.category').getAttribute('data-i18n') || card.querySelector('.category').textContent;
-                const activeBtn = card.querySelector('.dur-btn.active');
-                if (!activeBtn) return;
-                cart.push({
-                    category: categoryText,
-                    service: serviceName,
-                    duration: activeBtn.getAttribute('data-label'),
-                    price: parseInt(activeBtn.getAttribute('data-price'))
-                });
-                updateCheckoutDisplay();
-                switchPage('checkout');
-            });
-        }
-    });
-}
-
-function refreshTranslation() {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const k = el.getAttribute('data-i18n');
-        if (translations[currentLang] && translations[currentLang][k]) el.innerHTML = translations[currentLang][k];
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const k = el.getAttribute('data-i18n-placeholder');
-        if (translations[currentLang] && translations[currentLang][k]) el.placeholder = translations[currentLang][k];
-    });
-    document.querySelectorAll('.dur-btn').forEach(btn => {
-        if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
-        const label = btn.getAttribute('data-label');
-        btn.textContent = (currentLang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
-    });
-    const descKeyByCat = {
-        cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
-        cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
-        cat_acupressure: 'desc_acupressure', cat_waxing: 'desc_waxing', cat_breast: 'desc_breast',
-        cat_kids: 'desc_kids', cat_ratus: 'desc_ratus'
-    };
-    document.querySelectorAll('.price-card').forEach(card => {
-        const catKey = card.querySelector('.category')?.getAttribute('data-i18n');
-        const descKey = descKeyByCat[catKey];
-        const descEl = card.querySelector('.service-desc');
-        if (descEl && descKey && translations[currentLang] && translations[currentLang][descKey]) {
-            descEl.textContent = translations[currentLang][descKey];
-        }
-    });
-}
+    window.bindPriceCards();
+    window.refreshTranslation();
+};
 
 // =========================================
-// MAIN INIT
+// ADMIN: LOGOUT & ACCESS
 // =========================================
-document.addEventListener('DOMContentLoaded', () => {
-    seedDefaultVouchers();
-    seedDefaultServices();
-
-    const langBtns = document.querySelectorAll('.lang-btn');
-    const currencySelect = document.getElementById('currency-select');
-    const paxBtns = document.querySelectorAll('.pax-btn');
-    const paxActiveText = document.querySelector('.pax-active-text');
-    const toggleBtns = document.querySelectorAll('.toggle-btn');
-    const form = document.getElementById('checkout-form');
-    const header = document.querySelector('.floating-header');
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const navLinks = document.getElementById('nav-links');
-    const revealElements = document.querySelectorAll('.reveal');
-    const sections = document.querySelectorAll('section[id], footer[id]');
-    const navItems = document.querySelectorAll('.nav-links a');
-    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
-    const liquidIndicator = document.getElementById('liquid-indicator');
-    const btnAddPackage = document.querySelector('.btn-add-package');
-    const voucherInput = document.getElementById('voucher-input');
-    const btnApplyVoucher = document.getElementById('btn-apply-voucher');
-    const voucherMsg = document.getElementById('voucher-msg');
-
-    if (currencySelect) currencySelect.value = currentCurrency;
-
-    function updatePaxText() {
-        if (!paxActiveText) return;
-        const activeBtn = document.querySelector('.pax-btn.active');
-        if (!activeBtn) return;
-        let n = activeBtn.textContent.trim().split(' ')[0];
-        if (isNaN(n) || n === '') n = '1';
-        let text = `${n} Pelanggan`;
-        if (currentLang === 'en') text = `${n} Customer${n > 1 ? 's' : ''}`;
-        else if (currentLang === 'cn') text = `${n} 位顾客`;
-        else if (currentLang === 'jp') text = `お客様 ${n}名`;
-        paxActiveText.textContent = text;
-    }
-
-    function updateCheckoutDisplay() {
-        const container = document.getElementById('cart-items-container');
-        const totalBox = document.querySelector('.total-box');
-        if (!container || !totalBox) return;
-
-        let subtotal = 0;
-        container.innerHTML = '';
-
-        if (cart.length === 0) {
-            container.innerHTML = `
-                <div class="cart-item">
-                    <div class="item-info">
-                        <span class="item-cat">-</span>
-                        <h3 class="item-name">Belum ada paket dipilih</h3>
-                    </div>
-                </div>`;
-        } else {
-            cart.forEach((item, i) => {
-                subtotal += item.price;
-                const catName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
-                const durName = translateLabel(item.duration);
-                container.insertAdjacentHTML('beforeend', `
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <span class="item-cat">${catName}</span>
-                            <h3 class="item-name">${item.service} ${durName}</h3>
-                        </div>
-                        <div class="item-duration">${durName}</div>
-                        <div class="item-price">${formatPriceFull(item.price)}</div>
-                        <button class="btn-remove" onclick="removeCartItem(${i})"><i class="fas fa-times"></i></button>
-                    </div>`);
-            });
-        }
-
-        if (activeVoucherData) {
-            if (activeVoucherData.type === 'percent') discountAmount = subtotal * activeVoucherData.value;
-            else discountAmount = activeVoucherData.value;
-            if (discountAmount > subtotal) discountAmount = subtotal;
-        } else {
-            discountAmount = 0;
-        }
-
-        const finalTotal = subtotal - discountAmount;
-        let html = '';
-        if (discountAmount > 0) {
-            html = `
-                <div class="total-row">
-                    <span>${translations[currentLang].subtotal}</span>
-                    <span>${formatPriceFull(subtotal)}</span>
-                </div>
-                <div class="total-row discount">
-                    <span>${translations[currentLang].discount} (${appliedVoucherCode})</span>
-                    <span>-${formatPriceFull(discountAmount)}</span>
-                </div>
-                <div class="total-row final">
-                    <span class="total-label">${translations[currentLang].checkout_total}</span>
-                    <span class="total-amount">${formatPriceFull(finalTotal)}</span>
-                </div>`;
-        } else {
-            html = `
-                <div class="total-row final" style="border:none;margin-top:0;padding-top:0;">
-                    <span class="total-label">${translations[currentLang].checkout_total}</span>
-                    <span class="total-amount">${formatPriceFull(finalTotal)}</span>
-                </div>`;
-        }
-        totalBox.innerHTML = html;
-    }
-
-    window.removeCartItem = function(i) {
-        cart.splice(i, 1);
-        updateCheckoutDisplay();
-    };
-
-    function updateAllPrices() {
-        document.querySelectorAll('.price-card').forEach(card => {
-            const activeBtn = card.querySelector('.dur-btn.active');
-            if (activeBtn) {
-                const p = parseInt(activeBtn.getAttribute('data-price'));
-                const amountEl = card.querySelector('.amount');
-                if (amountEl) amountEl.textContent = formatPriceShort(p);
-            }
-        });
-        updateCheckoutDisplay();
-    }
-
-    function applyLanguage(lang) {
-        currentLang = lang;
-        try { localStorage.setItem('andelia_lang', lang); } catch(e) {}
-        langBtns.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-        });
-        refreshTranslation();
-        updatePaxText();
-        updateAllPrices();
-    }
-
-    function applyCurrency(currency) {
-        currentCurrency = currency;
-        try { localStorage.setItem('andelia_currency', currency); } catch(e) {}
-        if (currencySelect) currencySelect.value = currency;
-        updateAllPrices();
-    }
-
-    // 🎯 RENDER LAYANAN
-    renderServicesHome();
-
-    langBtns.forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang'))));
-    if (currencySelect) currencySelect.addEventListener('change', (e) => applyCurrency(e.target.value));
-    applyLanguage(currentLang);
-
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-    }
-
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) icon.classList.replace('fa-bars', 'fa-times');
-            else icon.classList.replace('fa-times', 'fa-bars');
-        });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.replace('fa-times', 'fa-bars');
-            });
-        });
-    }
-
-    if (btnAddPackage) {
-        btnAddPackage.addEventListener('click', () => {
-            switchPage('home');
-            setTimeout(() => {
-                const s = document.getElementById('layanan');
-                if (s) s.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        });
-    }
-
-    paxBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            if (this.classList.contains('pax-other')) {
-                const promptMsg = translations[currentLang]['checkout_pax_prompt'] || "Masukkan jumlah pelanggan (contoh: 10):";
-                const userInput = prompt(promptMsg);
-                if (userInput !== null && userInput.trim() !== "" && !isNaN(userInput) && parseInt(userInput) > 0) {
-                    paxBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    this.innerHTML = `${userInput} <i class="fas fa-chevron-down"></i>`;
-                    this.removeAttribute('data-i18n');
-                    updatePaxText();
-                }
-            } else {
-                paxBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                updatePaxText();
-            }
-        });
-    });
-
-    toggleBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const parentGroup = this.closest('.toggle-group');
-            parentGroup.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    if (btnApplyVoucher) {
-        btnApplyVoucher.addEventListener('click', () => {
-            const code = voucherInput.value.trim().toUpperCase();
-            if (!code) return;
-            const found = findActiveVoucher(code);
-            voucherMsg.style.display = 'block';
-            if (found) {
-                activeVoucherData = found;
-                appliedVoucherCode = found.code;
-                voucherMsg.className = 'voucher-msg success';
-                voucherMsg.textContent = `${translations[currentLang].msg_voucher_valid} (${code})`;
-                voucherInput.disabled = true;
-            } else {
-                activeVoucherData = null;
-                appliedVoucherCode = null;
-                voucherMsg.className = 'voucher-msg error';
-                voucherMsg.textContent = translations[currentLang].msg_voucher_invalid;
-            }
-            updateCheckoutDisplay();
-        });
-    }
-
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (cart.length === 0) {
-                alert("Silakan pilih layanan terlebih dahulu di halaman utama.");
-                return;
-            }
-            const custName = document.getElementById('cust-name').value;
-            const custPhone = document.getElementById('cust-phone').value;
-            const custAddress = document.getElementById('cust-address').value;
-            const bookDate = document.getElementById('book-date').value;
-            const bookTime = document.getElementById('book-time').value;
-            const paymentMethod = document.querySelector('.payment-toggle .toggle-btn.active').getAttribute('data-value');
-            const source = document.getElementById('source').value;
-            const notes = document.getElementById('notes').value;
-
-            let selectedPax = "1";
-            const activePaxBtn = document.querySelector('.pax-btn.active');
-            if (activePaxBtn) {
-                let p = activePaxBtn.textContent.trim().split(' ')[0];
-                if (!isNaN(p)) selectedPax = p;
-            }
-            const genderPemesan = document.querySelector('.gender-options .gender-group:nth-child(1) .toggle-btn.active').getAttribute('data-value');
-            const genderTerapis = document.querySelector('.gender-options .gender-group:nth-child(2) .toggle-btn.active').getAttribute('data-value');
-            const adminPhone = "6285817487847";
-            const greeting = translations[currentLang].wa_message;
-
-            let subtotal = 0;
-            let itemsText = '';
-            cart.forEach((item, i) => {
-                subtotal += item.price;
-                const cName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
-                const dName = translateLabel(item.duration);
-                itemsText += `${i+1}. ${item.service} (${dName}) - ${formatPriceFull(item.price)}\n`;
-            });
-            const finalTotal = subtotal - discountAmount;
-
-            let priceMessage = `Subtotal: ${formatPriceFull(subtotal)}\n`;
-            if (discountAmount > 0) priceMessage += `Diskon (${appliedVoucherCode}): -${formatPriceFull(discountAmount)}\n`;
-            priceMessage += `*TOTAL AKHIR: ${formatPriceFull(finalTotal)}*`;
-            if (currentCurrency !== 'IDR') priceMessage += `\n(approx. Rp ${finalTotal.toLocaleString('id-ID')})`;
-
-            let message = `${greeting}\n\n`;
-            message += `*--- DETAIL PESANAN ---*\n${itemsText}\n${priceMessage}\n\n`;
-            message += `*--- DATA PELANGGAN ---*\n`;
-            message += `Nama: ${custName}\n`;
-            message += `No. WhatsApp: +62${custPhone}\n`;
-            message += `Alamat: ${custAddress}\n`;
-            message += `Gender Pemesan: ${genderPemesan}\n`;
-            message += `Gender Terapis: ${genderTerapis}\n`;
-            message += `Jumlah Pelanggan (PAX): ${selectedPax}\n\n`;
-            message += `*--- JADWAL & PEMBAYARAN ---*\n`;
-            message += `Tanggal: ${bookDate}\nJam: ${bookTime}\nPembayaran: ${paymentMethod}\nTahu dari: ${source}\n`;
-            if (notes.trim() !== '') message += `Catatan: ${notes}\n`;
-            message += `\nMohon konfirmasi ketersediaan jadwalnya. Terima kasih!`;
-
-            window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
-        });
-    }
-
-    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-    if ('IntersectionObserver' in window && !reducedMotion.matches) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('in-view');
-                    observer.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        revealElements.forEach(el => observer.observe(el));
-        setTimeout(() => {
-            document.querySelectorAll('.hero-content .reveal').forEach(el => el.classList.add('in-view'));
-        }, 100);
+window.handleAdminAccess = function() {
+    if (sessionStorage.getItem(ADMIN_KEYS.SESSION)) {
+        adminInitDashboard();
+        window.switchPage('admin-dashboard');
     } else {
-        revealElements.forEach(el => el.classList.add('in-view'));
+        window.switchPage('admin-login');
     }
+};
 
-    function moveLiquidIndicator(index) {
-        if (liquidIndicator) liquidIndicator.style.transform = `translateX(${index * 100}%)`;
-    }
-    function setActiveNav() {
-        let current = '';
-        const scrollY = window.pageYOffset;
-        sections.forEach(section => {
-            const h = section.offsetHeight;
-            const top = section.offsetTop - 150;
-            if (scrollY >= top && scrollY < top + h) current = section.getAttribute('id');
-        });
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) current = 'kontak';
-        navItems.forEach(li => {
-            li.classList.remove('active');
-            if (li.getAttribute('href') === `#${current}`) li.classList.add('active');
-        });
-        bottomNavItems.forEach((item, i) => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${current}`) {
-                item.classList.add('active');
-                moveLiquidIndicator(i);
-            }
-        });
-    }
-    window.addEventListener('scroll', setActiveNav);
-    bottomNavItems.forEach((item, i) => {
-        item.addEventListener('click', function() {
-            bottomNavItems.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
-            moveLiquidIndicator(i);
-        });
-    });
-    setActiveNav();
-
-    if (window.location.hash === '#admin') handleAdminAccess();
-});
+window.adminLogout = function() {
+    sessionStorage.removeItem(ADMIN_KEYS.SESSION);
+    window.switchPage('home');
+};
 
 // =========================================
-// ADMIN PANEL
+// ADMIN: VOUCHER MANAGEMENT
 // =========================================
-function adminInitDashboard() {
-    const sess = sessionStorage.getItem(ADMIN_KEYS.SESSION);
-    if (sess) {
-        try {
-            const parsed = JSON.parse(sess);
-            const uName = document.getElementById('dash-user-name');
-            const uAvatar = document.getElementById('dash-user-avatar');
-            if (uName) uName.textContent = parsed.username;
-            if (uAvatar) uAvatar.textContent = parsed.username.charAt(0).toUpperCase();
-        } catch(e) {}
-    }
-    adminRenderVouchers();
-    adminRenderServices();
-}
-
-function adminFormatRp(n) { return 'Rp ' + Number(n).toLocaleString('id-ID'); }
-
-function adminToast(msg, type = 'success') {
-    const cont = document.getElementById('toast-container');
-    if (!cont) return;
-    const icons = { success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle' };
-    const t = document.createElement('div');
-    t.className = 'toast' + (type !== 'success' ? ' ' + type : '');
-    t.innerHTML = `<i class="fas ${icons[type] || icons.success}"></i><span>${msg}</span>`;
-    cont.appendChild(t);
-    setTimeout(() => {
-        t.style.animation = 'toastOut 0.3s ease forwards';
-        setTimeout(() => t.remove(), 300);
-    }, 2800);
-}
-
-let _adminConfirmCb = null;
-function adminConfirm(title, message, onOk) {
-    document.getElementById('confirm-title').textContent = title;
-    document.getElementById('confirm-message').textContent = message;
-    document.getElementById('confirm-modal').classList.add('show');
-    _adminConfirmCb = onOk;
-}
-function closeConfirm() {
-    document.getElementById('confirm-modal').classList.remove('show');
-    _adminConfirmCb = null;
-}
-window.closeConfirm = closeConfirm;
-
 function adminRenderVouchers() {
     const list = getVouchers();
     const tbody = document.getElementById('dash-voucher-tbody');
@@ -1011,13 +753,20 @@ window.adminDeleteVoucher = function(id) {
 };
 
 window.openVoucherForm = function() {
-    document.getElementById('dash-voucher-form').classList.add('show');
-    document.getElementById('dash-v-code').focus();
-};
-window.closeVoucherForm = function() {
-    document.getElementById('dash-voucher-form').classList.remove('show');
+    const f = document.getElementById('dash-voucher-form');
+    if (f) f.classList.add('show');
+    const c = document.getElementById('dash-v-code');
+    if (c) c.focus();
 };
 
+window.closeVoucherForm = function() {
+    const f = document.getElementById('dash-voucher-form');
+    if (f) f.classList.remove('show');
+};
+
+// =========================================
+// ADMIN: SERVICE MANAGEMENT
+// =========================================
 function adminRenderServices() {
     const list = getServices();
     const tbody = document.getElementById('dash-service-tbody');
@@ -1061,7 +810,8 @@ window.adminToggleService = function(id) {
         s.is_active = !s.is_active;
         saveServices(list);
         adminRenderServices();
-        renderServicesHome();
+        // 🎯 FIX: pakai window.renderServicesHome()
+        window.renderServicesHome();
         adminToast('Status diubah', 'info');
     }
 };
@@ -1073,20 +823,25 @@ window.adminDeleteService = function(id) {
     adminConfirm('Hapus Layanan?', `Layanan "${s.name}" akan dihapus permanen.`, () => {
         saveServices(list.filter(x => x.id !== id));
         adminRenderServices();
-        renderServicesHome();
+        // 🎯 FIX: pakai window.renderServicesHome()
+        window.renderServicesHome();
         adminToast('Layanan dihapus');
     });
 };
 
 window.openServiceForm = function() {
-    document.getElementById('dash-service-form').classList.add('show');
-    document.getElementById('dash-s-category').focus();
+    const f = document.getElementById('dash-service-form');
+    if (f) f.classList.add('show');
+    const c = document.getElementById('dash-s-category');
+    if (c) c.focus();
 };
 window.closeServiceForm = function() {
-    document.getElementById('dash-service-form').classList.remove('show');
+    const f = document.getElementById('dash-service-form');
+    if (f) f.classList.remove('show');
 };
 window.addOptionRowDash = function() {
     const c = document.getElementById('dash-s-options');
+    if (!c) return;
     const r = document.createElement('div');
     r.className = 'option-row-dash';
     r.innerHTML = `
@@ -1096,8 +851,11 @@ window.addOptionRowDash = function() {
     `;
     c.appendChild(r);
 };
+
 function resetOptionRowsDash() {
-    document.getElementById('dash-s-options').innerHTML = `
+    const c = document.getElementById('dash-s-options');
+    if (!c) return;
+    c.innerHTML = `
         <div class="option-row-dash">
             <input type="text" class="opt-label-dash" placeholder="60 Menit">
             <input type="number" class="opt-price-dash" placeholder="125000">
@@ -1106,8 +864,323 @@ function resetOptionRowsDash() {
     `;
 }
 
-// Admin form handlers
+// =========================================
+// ADMIN: UTILITIES
+// =========================================
+function adminFormatRp(n) { return 'Rp ' + Number(n).toLocaleString('id-ID'); }
+
+function adminToast(msg, type = 'success') {
+    const cont = document.getElementById('toast-container');
+    if (!cont) return;
+    const icons = { success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle' };
+    const t = document.createElement('div');
+    t.className = 'toast' + (type !== 'success' ? ' ' + type : '');
+    t.innerHTML = `<i class="fas ${icons[type] || icons.success}"></i><span>${msg}</span>`;
+    cont.appendChild(t);
+    setTimeout(() => {
+        t.style.animation = 'toastOut 0.3s ease forwards';
+        setTimeout(() => t.remove(), 300);
+    }, 2800);
+}
+
+let _adminConfirmCb = null;
+function adminConfirm(title, message, onOk) {
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-message').textContent = message;
+    document.getElementById('confirm-modal').classList.add('show');
+    _adminConfirmCb = onOk;
+}
+window.closeConfirm = function() {
+    document.getElementById('confirm-modal').classList.remove('show');
+    _adminConfirmCb = null;
+};
+
+function adminInitDashboard() {
+    const sess = sessionStorage.getItem(ADMIN_KEYS.SESSION);
+    if (sess) {
+        try {
+            const parsed = JSON.parse(sess);
+            const uName = document.getElementById('dash-user-name');
+            const uAvatar = document.getElementById('dash-user-avatar');
+            if (uName) uName.textContent = parsed.username;
+            if (uAvatar) uAvatar.textContent = parsed.username.charAt(0).toUpperCase();
+        } catch(e) {}
+    }
+    adminRenderVouchers();
+    adminRenderServices();
+}
+
+// =========================================
+// INIT MAIN
+// =========================================
 document.addEventListener('DOMContentLoaded', () => {
+    seedDefaultVouchers();
+    seedDefaultServices();
+
+    // Currency init
+    const currencySelect = document.getElementById('currency-select');
+    if (currencySelect) currencySelect.value = currentCurrency;
+
+    // Render layanan
+    window.renderServicesHome();
+    window.applyLanguage(currentLang);
+
+    // === LANGUAGE & CURRENCY BUTTONS ===
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => window.applyLanguage(btn.getAttribute('data-lang')));
+    });
+    if (currencySelect) {
+        currencySelect.addEventListener('change', (e) => window.applyCurrency(e.target.value));
+    }
+
+    // === NAVBAR SCROLL ===
+    const header = document.querySelector('.floating-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+    }
+
+    // === MOBILE MENU ===
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) icon.classList.replace('fa-bars', 'fa-times');
+            else icon.classList.replace('fa-times', 'fa-bars');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+    }
+
+    // === ADD PACKAGE BUTTON (checkout) ===
+    const btnAddPackage = document.querySelector('.btn-add-package');
+    if (btnAddPackage) {
+        btnAddPackage.addEventListener('click', () => {
+            window.switchPage('home');
+            setTimeout(() => {
+                const s = document.getElementById('layanan');
+                if (s) s.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+    }
+
+    // === PAX BUTTONS ===
+    const paxBtns = document.querySelectorAll('.pax-btn');
+    paxBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.classList.contains('pax-other')) {
+                const promptMsg = translations[currentLang]['checkout_pax_prompt'] || "Masukkan jumlah pelanggan (contoh: 10):";
+                const userInput = prompt(promptMsg);
+                if (userInput !== null && userInput.trim() !== "" && !isNaN(userInput) && parseInt(userInput) > 0) {
+                    paxBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    this.innerHTML = `${userInput} <i class="fas fa-chevron-down"></i>`;
+                    this.removeAttribute('data-i18n');
+                    window.updatePaxText();
+                }
+            } else {
+                paxBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                window.updatePaxText();
+            }
+        });
+    });
+
+    // === TOGGLE BUTTONS (Gender, Payment) ===
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const parentGroup = this.closest('.toggle-group');
+            parentGroup.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // === VOUCHER HANDLER (TOGGLE: klik lagi untuk batal) ===
+    const voucherInput = document.getElementById('voucher-input');
+    const btnApplyVoucher = document.getElementById('btn-apply-voucher');
+    const voucherMsg = document.getElementById('voucher-msg');
+
+    if (btnApplyVoucher) {
+        btnApplyVoucher.addEventListener('click', () => {
+            // Batal voucher
+            if (appliedVoucherCode && voucherInput.disabled) {
+                appliedVoucherCode = null;
+                activeVoucherData = null;
+                voucherInput.value = '';
+                voucherInput.disabled = false;
+                if (voucherMsg) voucherMsg.style.display = 'none';
+                window.updateCheckoutDisplay();
+                return;
+            }
+            const code = voucherInput.value.trim().toUpperCase();
+            if (!code) return;
+            const found = findActiveVoucher(code);
+            if (voucherMsg) voucherMsg.style.display = 'block';
+            if (found) {
+                activeVoucherData = found;
+                appliedVoucherCode = found.code;
+                voucherMsg.className = 'voucher-msg success';
+                voucherMsg.textContent = `${translations[currentLang].msg_voucher_valid} (${code})`;
+                voucherInput.disabled = true;
+            } else {
+                activeVoucherData = null;
+                appliedVoucherCode = null;
+                voucherMsg.className = 'voucher-msg error';
+                voucherMsg.textContent = translations[currentLang].msg_voucher_invalid;
+            }
+            window.updateCheckoutDisplay();
+        });
+    }
+
+    // === CHECKOUT FORM SUBMIT ===
+    const form = document.getElementById('checkout-form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (cart.length === 0) {
+                alert("Silakan pilih layanan terlebih dahulu di halaman utama.");
+                return;
+            }
+            const custName = document.getElementById('cust-name').value;
+            const custPhone = document.getElementById('cust-phone').value;
+            const custAddress = document.getElementById('cust-address').value;
+            const bookDate = document.getElementById('book-date').value;
+            const bookTime = document.getElementById('book-time').value;
+            const paymentMethod = document.querySelector('.payment-toggle .toggle-btn.active').getAttribute('data-value');
+            const source = document.getElementById('source').value;
+            const notes = document.getElementById('notes').value;
+
+            let selectedPax = "1";
+            const activePaxBtn = document.querySelector('.pax-btn.active');
+            if (activePaxBtn) {
+                let p = activePaxBtn.textContent.trim().split(' ')[0];
+                if (!isNaN(p)) selectedPax = p;
+            }
+            const genderPemesan = document.querySelector('.gender-options .gender-group:nth-child(1) .toggle-btn.active').getAttribute('data-value');
+            const genderTerapis = document.querySelector('.gender-options .gender-group:nth-child(2) .toggle-btn.active').getAttribute('data-value');
+            const adminPhone = "6285817487847";
+            const greeting = translations[currentLang].wa_message;
+
+            let subtotal = 0;
+            let itemsText = '';
+            cart.forEach((item, i) => {
+                subtotal += item.price;
+                const dName = translateLabel(item.duration);
+                itemsText += `${i+1}. ${item.service} (${dName}) - ${formatPriceFull(item.price)}\n`;
+            });
+            const finalTotal = subtotal - discountAmount;
+
+            let priceMessage = `Subtotal: ${formatPriceFull(subtotal)}\n`;
+            if (discountAmount > 0) priceMessage += `Diskon (${appliedVoucherCode}): -${formatPriceFull(discountAmount)}\n`;
+            priceMessage += `*TOTAL AKHIR: ${formatPriceFull(finalTotal)}*`;
+            if (currentCurrency !== 'IDR') priceMessage += `\n(approx. Rp ${finalTotal.toLocaleString('id-ID')})`;
+
+            let message = `${greeting}\n\n`;
+            message += `*--- DETAIL PESANAN ---*\n${itemsText}\n${priceMessage}\n\n`;
+            message += `*--- DATA PELANGGAN ---*\n`;
+            message += `Nama: ${custName}\nNo. WhatsApp: +62${custPhone}\nAlamat: ${custAddress}\n`;
+            message += `Gender Pemesan: ${genderPemesan}\nGender Terapis: ${genderTerapis}\n`;
+            message += `Jumlah Pelanggan (PAX): ${selectedPax}\n\n`;
+            message += `*--- JADWAL & PEMBAYARAN ---*\n`;
+            message += `Tanggal: ${bookDate}\nJam: ${bookTime}\nPembayaran: ${paymentMethod}\nTahu dari: ${source}\n`;
+            if (notes.trim() !== '') message += `Catatan: ${notes}\n`;
+            message += `\nMohon konfirmasi ketersediaan jadwalnya. Terima kasih!`;
+
+            // Buka WA
+            window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
+
+            // Reset cart setelah submit (delay 1 detik agar popup tidak ke-block)
+            setTimeout(() => {
+                cart = [];
+                appliedVoucherCode = null;
+                activeVoucherData = null;
+                const vInput = document.getElementById('voucher-input');
+                const vMsg = document.getElementById('voucher-msg');
+                if (vInput) { vInput.value = ''; vInput.disabled = false; }
+                if (vMsg) vMsg.style.display = 'none';
+                window.updateCheckoutDisplay();
+            }, 1000);
+        });
+    }
+
+    // === SCROLL REVEAL ===
+    const revealElements = document.querySelectorAll('.reveal');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in-view');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealElements.forEach(el => observer.observe(el));
+        setTimeout(() => {
+            document.querySelectorAll('.hero-content .reveal').forEach(el => el.classList.add('in-view'));
+        }, 100);
+    } else {
+        revealElements.forEach(el => el.classList.add('in-view'));
+    }
+
+    // === SCROLL SPY (Navbar & Bottom Nav) ===
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navItems = document.querySelectorAll('.nav-links a');
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    const liquidIndicator = document.getElementById('liquid-indicator');
+
+    function moveLiquidIndicator(index) {
+        if (liquidIndicator) liquidIndicator.style.transform = `translateX(${index * 100}%)`;
+    }
+    function setActiveNav() {
+        let current = '';
+        const scrollY = window.pageYOffset;
+        sections.forEach(section => {
+            const h = section.offsetHeight;
+            const top = section.offsetTop - 150;
+            if (scrollY >= top && scrollY < top + h) current = section.getAttribute('id');
+        });
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) current = 'kontak';
+        navItems.forEach(li => {
+            li.classList.remove('active');
+            if (li.getAttribute('href') === `#${current}`) li.classList.add('active');
+        });
+        bottomNavItems.forEach((item, i) => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+                moveLiquidIndicator(i);
+            }
+        });
+    }
+    window.addEventListener('scroll', setActiveNav);
+    bottomNavItems.forEach((item, i) => {
+        item.addEventListener('click', function() {
+            bottomNavItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+            moveLiquidIndicator(i);
+        });
+    });
+    setActiveNav();
+
+    // Auto-detect #admin
+    if (window.location.hash === '#admin') window.handleAdminAccess();
+});
+
+// =========================================
+// INIT ADMIN FORMS
+// =========================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Login
     const loginForm = document.getElementById('admin-login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -1118,7 +1191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (u === DEFAULT_ADMIN.username && p === DEFAULT_ADMIN.password) {
                 sessionStorage.setItem(ADMIN_KEYS.SESSION, JSON.stringify({ username: u, loginAt: new Date().toISOString() }));
                 adminInitDashboard();
-                switchPage('admin-dashboard');
+                window.switchPage('admin-dashboard');
             } else {
                 err.textContent = 'Username atau password salah.';
                 err.style.display = 'block';
@@ -1127,14 +1200,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Confirm modal OK
     const okBtn = document.getElementById('confirm-ok');
     if (okBtn) {
         okBtn.addEventListener('click', () => {
             if (_adminConfirmCb) _adminConfirmCb();
-            closeConfirm();
+            window.closeConfirm();
         });
     }
 
+    // Dashboard tabs
     document.querySelectorAll('.dash-tab-btn[data-tab]').forEach(btn => {
         btn.addEventListener('click', () => {
             const tab = btn.getAttribute('data-tab');
@@ -1145,6 +1220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Voucher form
     const vForm = document.getElementById('dash-voucher-form-el');
     if (vForm) {
         vForm.addEventListener('submit', (e) => {
@@ -1162,12 +1238,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             saveVouchers(list);
             adminRenderVouchers();
-            closeVoucherForm();
+            window.closeVoucherForm();
             vForm.reset();
             adminToast('Voucher ditambahkan');
         });
     }
 
+    // Service form
     const sForm = document.getElementById('dash-service-form-el');
     if (sForm) {
         sForm.addEventListener('submit', (e) => {
@@ -1197,8 +1274,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             saveServices(list);
             adminRenderServices();
-            renderServicesHome();
-            closeServiceForm();
+            window.renderServicesHome();  // 🎯 FIX: pakai window
+            window.closeServiceForm();
             sForm.reset();
             resetOptionRowsDash();
             adminToast('Layanan ditambahkan ke website!');
