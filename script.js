@@ -1,5 +1,5 @@
 // =========================================
-// KAMUS TRANSLASI (ID, EN, CN, JP)
+// KAMUS TRANSLASI
 // =========================================
 const translations = {
     id: {
@@ -17,12 +17,10 @@ const translations = {
         price_label: "DAFTAR HARGA", price_title: "Pilih Layanan <em>Favoritmu</em>",
         price_duration: "DURASI:", price_option: "PILIHAN:", price_type: "JENIS:", price_area: "AREA:",
         price_popular: "TERPOPULER", price_order: "PESAN PAKET",
-        
         cat_body_massage: "RELAXATION MASSAGE", cat_body_scrub: "BODY SCRUB",
         cat_body_reflex: "FOOT REFLEXY THERAPY", cat_combo: "FOOT, HEAD & SHOULDER MASSAGE",
         cat_nails: "MANICURE PEDICURE", cat_hair: "HAIR TREATMENT", cat_acupressure: "ACUPRESSURE / TOTOK",
         cat_waxing: "WAXING", cat_breast: "BREAST CARE", cat_kids: "KIDS MASSAGE", cat_ratus: "RATUS",
-
         desc_relax: "Layanan pijat seluruh badan menggunakan hot stone untuk melancarkan peredaran darah dan melepas penat.",
         desc_foot: "Terapi refleksi kaki dengan hot stone untuk menghilangkan pegal dan lelah pada tubuh Anda.",
         desc_scrub: "Perawatan lulur tubuh (termasuk body mask) untuk mengangkat sel kulit mati agar kulit lebih halus dan cerah.",
@@ -41,7 +39,7 @@ const translations = {
         faq_q4: "Apa yang perlu disiapkan sebelum sesi?", faq_a4: "Tanyakan kebutuhan ruang dan perlengkapan kepada admin saat konfirmasi. Kami menyediakan handuk, kain alas, dan minyak pijat.",
         footer_desc: "Layanan home spa & massage panggilan di Bandung. Relaksasi premium langsung di rumah Anda.",
         footer_contact: "Kontak Kami", footer_hours: "Jam Operasional",
-        footer_day_mon: "Senin–Sabtu: 08.00–19.00 WIB", footer_day_sun: "Minggu: Tutup",
+        footer_day_mon: "Senin–Minggu: 08.00–19.00 WIB",
         checkout_back: "Kembali", checkout_title_1: "Paket Per Pelanggan", checkout_title_2: "Konfirmasi Pesanan",
         checkout_pax_label: "JUMLAH PELANGGAN (PAX)", checkout_pax_active: "1 Pelanggan", checkout_pax_other: "Lain",
         checkout_pax_prompt: "Masukkan jumlah pelanggan (contoh: 10):",
@@ -54,7 +52,10 @@ const translations = {
         form_cash: "TUNAI", form_transfer: "TRANSFER", form_source: "TAU ANDELIA DARI MANA?", form_source_friend: "Rekomendasi Teman",
         form_notes: "CATATAN TAMBAHAN", form_notes_ph: "Contoh: Patokan rumah, atau permintaan khusus...",
         form_voucher: "PUNYA VOUCHER?", form_voucher_ph: "MASUKKAN KODE...", form_apply: "PASANG", form_submit: "KONFIRMASI VIA WHATSAPP",
-        wa_message: "Halo Andelia Home Spa, saya ingin konfirmasi pesanan:"
+        wa_message: "Halo Andelia Home Spa, saya ingin konfirmasi pesanan:",
+        msg_voucher_valid: "Voucher berhasil dipasang!",
+        msg_voucher_invalid: "Kode voucher tidak valid atau sudah kedaluwarsa.",
+        subtotal: "Subtotal", discount: "Diskon"
     },
     en: {
         nav_home: "HOME", nav_services: "SERVICES", nav_contact: "CONTACT",
@@ -71,12 +72,10 @@ const translations = {
         price_label: "PRICE LIST", price_title: "Choose Your <em>Favorite Service</em>",
         price_duration: "DURATION:", price_option: "OPTION:", price_type: "TYPE:", price_area: "AREA:",
         price_popular: "MOST POPULAR", price_order: "ORDER PACKAGE",
-        
         cat_body_massage: "RELAXATION MASSAGE", cat_body_scrub: "BODY SCRUB",
         cat_body_reflex: "FOOT REFLEXY THERAPY", cat_combo: "FOOT, HEAD & SHOULDER MASSAGE",
         cat_nails: "MANICURE PEDICURE", cat_hair: "HAIR TREATMENT", cat_acupressure: "ACUPRESSURE / TOTOK",
         cat_waxing: "WAXING", cat_breast: "BREAST CARE", cat_kids: "KIDS MASSAGE", cat_ratus: "RATUS",
-        
         desc_relax: "Full body massage using hot stone to improve blood circulation and relieve fatigue.",
         desc_foot: "Foot reflexology therapy with hot stone to relieve body aches and fatigue.",
         desc_scrub: "Body scrub treatment (including body mask) to remove dead skin cells for smoother and brighter skin.",
@@ -91,11 +90,11 @@ const translations = {
         faq_title: "Frequently Asked <em>Questions</em>",
         faq_q1: "Do therapists come to the house?", faq_a1: "Yes, Andelia provides home spa services in the Bandung area. Please provide your location to the admin to ensure your address is within our service coverage.",
         faq_q2: "How to book a session?", faq_a2: "Choose a service on this page, click the order button, and you will be directed to the confirmation page to fill in the schedule. The order is forwarded to the admin's WhatsApp.",
-        faq_q3: "Is there a transportation fee?", faq_a3: "Confirm the transportation fee and total payment with the admin based on the visit location before approving the reservation. Free shipping for certain areas.",
+        faq_q3: "Is there a transportation fee?", faq_a3: "Confirm the transportation fee and total payment with the admin based on the visit location before approving the reservation.",
         faq_q4: "What should I prepare before the session?", faq_a4: "Ask the admin about space and equipment needs during confirmation. We provide towels, mats, and massage oil.",
         footer_desc: "Home spa & call massage services in Bandung. Premium relaxation right at your home.",
         footer_contact: "Contact Us", footer_hours: "Operating Hours",
-        footer_day_mon: "Mon–Sat: 08.00–19.00 WIB", footer_day_sun: "Sunday: Closed",
+        footer_day_mon: "Mon–Sun: 08.00–19.00 WIB",
         checkout_back: "Back", checkout_title_1: "Package Per Customer", checkout_title_2: "Order Confirmation",
         checkout_pax_label: "NUMBER OF CUSTOMERS (PAX)", checkout_pax_active: "1 Customer", checkout_pax_other: "Other",
         checkout_pax_prompt: "Enter number of customers (e.g., 10):",
@@ -108,7 +107,10 @@ const translations = {
         form_cash: "CASH", form_transfer: "TRANSFER", form_source: "HOW DID YOU KNOW ANDELIA?", form_source_friend: "Friend Recommendation",
         form_notes: "ADDITIONAL NOTES", form_notes_ph: "Example: House landmark, or special requests...",
         form_voucher: "HAVE A VOUCHER?", form_voucher_ph: "ENTER CODE...", form_apply: "APPLY", form_submit: "CONFIRM VIA WHATSAPP",
-        wa_message: "Hello Andelia Home Spa, I would like to confirm the order:"
+        wa_message: "Hello Andelia Home Spa, I would like to confirm the order:",
+        msg_voucher_valid: "Voucher applied successfully!",
+        msg_voucher_invalid: "Invalid or expired voucher code.",
+        subtotal: "Subtotal", discount: "Discount"
     },
     cn: {
         nav_home: "首页", nav_services: "服务", nav_contact: "联系",
@@ -125,12 +127,10 @@ const translations = {
         price_label: "价格表", price_title: "选择你最喜欢的<em>服务</em>",
         price_duration: "时长:", price_option: "选项:", price_type: "类型:", price_area: "部位:",
         price_popular: "最受欢迎", price_order: "订购套餐",
-        
         cat_body_massage: "放松按摩", cat_body_scrub: "身体磨砂", cat_body_reflex: "足部反射疗法",
         cat_combo: "足部、头部与肩部按摩", cat_nails: "美甲美足", cat_hair: "头发护理",
         cat_acupressure: "指压 (Totok)", cat_waxing: "脱毛", cat_breast: "乳房护理",
         cat_kids: "儿童按摩", cat_ratus: "传统私处护理 (Ratus)",
-        
         desc_relax: "使用热石进行全身按摩，促进血液循环，缓解疲劳。",
         desc_foot: "使用热石进行足底反射疗法，缓解身体酸痛和疲劳。",
         desc_scrub: "身体磨砂护理（包括体膜），去除死皮细胞，使皮肤更光滑亮丽。",
@@ -149,7 +149,7 @@ const translations = {
         faq_q4: "服务前需要准备什么？", faq_a4: "在确认时向管理员询问空间和设备需求。我们提供毛巾、垫子和按摩油。",
         footer_desc: "万隆地区的上门水疗与按摩服务。高级放松直接送到您家。",
         footer_contact: "联系我们", footer_hours: "营业时间",
-        footer_day_mon: "周一至周六: 08.00–19.00 WIB", footer_day_sun: "周日: 休息",
+        footer_day_mon: "周一至周日: 08.00–19.00 WIB",
         checkout_back: "返回", checkout_title_1: "每位顾客套餐", checkout_title_2: "订单确认",
         checkout_pax_label: "顾客数量 (PAX)", checkout_pax_active: "1 位顾客", checkout_pax_other: "其他",
         checkout_pax_prompt: "输入顾客数量（例如：10）：",
@@ -162,7 +162,10 @@ const translations = {
         form_cash: "现金", form_transfer: "转账", form_source: "您是如何知道 Andelia 的？", form_source_friend: "朋友推荐",
         form_notes: "附加备注", form_notes_ph: "例如：地标建筑，或特殊要求...",
         form_voucher: "有优惠券吗？", form_voucher_ph: "输入代码...", form_apply: "应用", form_submit: "通过 WhatsApp 确认",
-        wa_message: "您好 Andelia Home Spa，我想确认订单："
+        wa_message: "您好 Andelia Home Spa，我想确认订单：",
+        msg_voucher_valid: "优惠券应用成功！",
+        msg_voucher_invalid: "优惠券代码无效或已过期。",
+        subtotal: "小计", discount: "折扣"
     },
     jp: {
         nav_home: "ホーム", nav_services: "サービス", nav_contact: "お問い合わせ",
@@ -179,12 +182,10 @@ const translations = {
         price_label: "料金表", price_title: "お気に入りの<em>サービス</em>を選択",
         price_duration: "所要時間:", price_option: "オプション:", price_type: "種類:", price_area: "部位:",
         price_popular: "一番人気", price_order: "パッケージを注文",
-        
         cat_body_massage: "リラクゼーションマッサージ", cat_body_scrub: "ボディスクラブ", cat_body_reflex: "フットリフレクソロジー",
         cat_combo: "足・頭・肩のマッサージ", cat_nails: "マニキュア・ペディキュア", cat_hair: "ヘアトリートメント",
         cat_acupressure: "指圧（トトック）", cat_waxing: "脱毛（ワックス）", cat_breast: "バストケア",
         cat_kids: "キッズマッサージ", cat_ratus: "ラトゥス（伝統ケア）",
-        
         desc_relax: "ホットストーンを使用した全身マッサージで、血行を促進し疲労を取り除きます。",
         desc_foot: "ホットストーンを使用した足裏リフレクソロジーで、体の痛みや疲れを和らげます。",
         desc_scrub: "ボディスクラブトリートメント（ボディマスク含む）で、古い角質を取り除き、肌をすべすべで明るくします。",
@@ -199,11 +200,11 @@ const translations = {
         faq_title: "よくある<em>質問</em>",
         faq_q1: "セラピストは自宅に来ますか？", faq_a1: "はい、Andeliaはバンドン地域で出張スパサービスを提供しています。サービス範囲内か確認するため、管理者に場所をお知らせください。",
         faq_q2: "セッションを予約するには？", faq_a2: "このページでサービスを選択し、注文ボタンをクリックすると、スケジュールを入力する確認ページに移動します。注文は管理者のWhatsAppに転送されます。",
-        faq_q3: "交通費はかかりますか？", faq_a3: "予約を承認する前に、訪問場所に基づいて交通費と合計金額を管理者に確認してください。特定の地域では送料無料です。",
+        faq_q3: "交通費はかかりますか？", faq_a3: "予約を承認する前に、訪問場所に基づいて交通費と合計金額を管理者に確認してください。",
         faq_q4: "セッションの前に何を準備すればよいですか？", faq_a4: "確認時にスペースと設備のニーズについて管理者に尋ねてください。タオル、マット、マッサージオイルを提供しています。",
         footer_desc: "バンドンでの出張スパ＆マッサージサービス。プレミアムリラクゼーションをご自宅で。",
         footer_contact: "お問い合わせ", footer_hours: "営業時間",
-        footer_day_mon: "月〜土: 08.00–19.00 WIB", footer_day_sun: "日曜日: 定休日",
+        footer_day_mon: "月〜日: 08.00–19.00 WIB",
         checkout_back: "戻る", checkout_title_1: "お客様ごとのパッケージ", checkout_title_2: "注文確認",
         checkout_pax_label: "お客様の人数（PAX）", checkout_pax_active: "お客様1名", checkout_pax_other: "その他",
         checkout_pax_prompt: "お客様の人数を入力してください（例：10）：",
@@ -216,12 +217,15 @@ const translations = {
         form_cash: "現金", form_transfer: "振込", form_source: "Andeliaをどこで知りましたか？", form_source_friend: "友人の紹介",
         form_notes: "追加のメモ", form_notes_ph: "例：家の目印、または特別なリクエスト...",
         form_voucher: "クーポンをお持ちですか？", form_voucher_ph: "コードを入力...", form_apply: "適用する", form_submit: "WhatsAppで確認する",
-        wa_message: "こんにちはAndelia Home Spa、注文を確認したいです："
+        wa_message: "こんにちはAndelia Home Spa、注文を確認したいです：",
+        msg_voucher_valid: "クーポンが正常に適用されました！",
+        msg_voucher_invalid: "無効なクーポンコードです。",
+        subtotal: "小計", discount: "割引"
     }
 };
 
 // =========================================
-// CONFIG KURS & FORMAT HARGA
+// CONFIG KURS
 // =========================================
 const currencyConfig = {
     IDR: { rate: 1, locale: 'id-ID', currency: 'IDR' },
@@ -232,61 +236,118 @@ const currencyConfig = {
     JPY: { rate: 0.0097, locale: 'ja-JP', currency: 'JPY' }
 };
 
+// =========================================
+// STATE
+// =========================================
 let currentLang = 'id';
 let currentCurrency = 'IDR';
+let cart = [];
+let appliedVoucherCode = null;
+let activeVoucherData = null;
+let discountAmount = 0;
 
 try {
     currentLang = localStorage.getItem('andelia_lang') || 'id';
     currentCurrency = localStorage.getItem('andelia_currency') || 'IDR';
-} catch (e) {
-    console.warn("Local storage is blocked.");
+} catch(e) {}
+
+// =========================================
+// STORAGE VOUCHERS & SERVICES
+// =========================================
+const ADMIN_KEYS = {
+    SESSION: 'andelia_admin_session',
+    VOUCHERS: 'andelia_vouchers',
+    SERVICES: 'andelia_services',
+    SEEDED: 'andelia_vouchers_seeded'
+};
+const DEFAULT_ADMIN = { username: 'admin', password: 'andelia2024' };
+
+function getVouchers() {
+    try { return JSON.parse(localStorage.getItem(ADMIN_KEYS.VOUCHERS)) || []; }
+    catch { return []; }
+}
+function saveVouchers(list) {
+    localStorage.setItem(ADMIN_KEYS.VOUCHERS, JSON.stringify(list));
+}
+function getServices() {
+    try { return JSON.parse(localStorage.getItem(ADMIN_KEYS.SERVICES)) || []; }
+    catch { return []; }
+}
+function saveServices(list) {
+    localStorage.setItem(ADMIN_KEYS.SERVICES, JSON.stringify(list));
+}
+function seedDefaultVouchers() {
+    if (localStorage.getItem(ADMIN_KEYS.SEEDED) !== 'true') {
+        const existing = getVouchers();
+        if (existing.length === 0) {
+            saveVouchers([
+                { id: 1, code: 'SPA10', type: 'percent', value: 0.1, is_active: true, createdAt: new Date().toISOString() },
+                { id: 2, code: 'NEW20K', type: 'fixed', value: 20000, is_active: true, createdAt: new Date().toISOString() }
+            ]);
+        }
+        localStorage.setItem(ADMIN_KEYS.SEEDED, 'true');
+    }
+}
+function findActiveVoucher(code) {
+    const all = getVouchers();
+    return all.find(v => v.code === code && v.is_active);
 }
 
+// =========================================
+// HELPERS
+// =========================================
 function translateLabel(label) {
     if (!label) return '';
     let res = label;
-    if (currentLang === 'en') {
-        res = res.replace(/Menit/gi, 'Minutes');
-        res = res.replace(/Sesi Tunggal/gi, 'Single Session');
-    } else if (currentLang === 'cn') {
-        res = res.replace(/Menit/gi, '分钟');
-        res = res.replace(/Sesi Tunggal/gi, '单次');
-    } else if (currentLang === 'jp') {
-        res = res.replace(/Menit/gi, '分');
-        res = res.replace(/Sesi Tunggal/gi, 'シングルセッション');
-    }
+    if (currentLang === 'en') { res = res.replace(/Menit/gi, 'Minutes'); res = res.replace(/Sesi Tunggal/gi, 'Single Session'); }
+    else if (currentLang === 'cn') { res = res.replace(/Menit/gi, '分钟'); res = res.replace(/Sesi Tunggal/gi, '单次'); }
+    else if (currentLang === 'jp') { res = res.replace(/Menit/gi, '分'); res = res.replace(/Sesi Tunggal/gi, 'シングルセッション'); }
     return res;
 }
-
 function formatPriceShort(amountIDR) {
     if (currentCurrency === 'IDR') return (amountIDR / 1000) + 'k';
-    const config = currencyConfig[currentCurrency];
-    const converted = amountIDR * config.rate;
-    return new Intl.NumberFormat(config.locale, {
-        style: 'currency', currency: config.currency, maximumFractionDigits: 0
-    }).format(converted);
+    const c = currencyConfig[currentCurrency];
+    return new Intl.NumberFormat(c.locale, { style: 'currency', currency: c.currency, maximumFractionDigits: 0 }).format(amountIDR * c.rate);
 }
-
 function formatPriceFull(amountIDR) {
-    const config = currencyConfig[currentCurrency];
-    const converted = amountIDR * config.rate;
-    return new Intl.NumberFormat(config.locale, {
-        style: 'currency', currency: config.currency, maximumFractionDigits: 0
-    }).format(converted);
+    const c = currencyConfig[currentCurrency];
+    return new Intl.NumberFormat(c.locale, { style: 'currency', currency: c.currency, maximumFractionDigits: 0 }).format(amountIDR * c.rate);
 }
 
-// ARRAY UNTUK MENYIMPAN SEMUA PAKET YANG DIPILIH
-let cart = [];
+// =========================================
+// SWITCH PAGE
+// =========================================
+window.switchPage = function(pageId) {
+    document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+    document.body.classList.toggle('admin-mode', pageId.startsWith('admin-'));
+    window.scrollTo(0, 0);
+};
 
+window.handleAdminAccess = function() {
+    if (sessionStorage.getItem(ADMIN_KEYS.SESSION)) {
+        adminInitDashboard();
+        switchPage('admin-dashboard');
+    } else {
+        switchPage('admin-login');
+    }
+};
+
+window.adminLogout = function() {
+    sessionStorage.removeItem(ADMIN_KEYS.SESSION);
+    switchPage('home');
+};
+
+// =========================================
+// MAIN INIT
+// =========================================
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // =========================================
-    // 1. DECLARE ALL DOM ELEMENTS
-    // =========================================
+    seedDefaultVouchers();
+
     const langBtns = document.querySelectorAll('.lang-btn');
     const currencySelect = document.getElementById('currency-select');
     const paxBtns = document.querySelectorAll('.pax-btn');
-    const paxActiveText = document.querySelector('.pax-active-text'); 
+    const paxActiveText = document.querySelector('.pax-active-text');
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const form = document.getElementById('checkout-form');
     const header = document.querySelector('.floating-header');
@@ -294,116 +355,135 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.getElementById('nav-links');
     const revealElements = document.querySelectorAll('.reveal');
     const priceCards = document.querySelectorAll('.price-card');
-    const sections = document.querySelectorAll('section[id], footer[id]'); 
+    const sections = document.querySelectorAll('section[id], footer[id]');
     const navItems = document.querySelectorAll('.nav-links a');
     const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
     const liquidIndicator = document.getElementById('liquid-indicator');
     const btnAddPackage = document.querySelector('.btn-add-package');
+    const voucherInput = document.getElementById('voucher-input');
+    const btnApplyVoucher = document.getElementById('btn-apply-voucher');
+    const voucherMsg = document.getElementById('voucher-msg');
 
-    // =========================================
-    // 2. DEFINE FUNCTIONS
-    // =========================================
+    if (currencySelect) currencySelect.value = currentCurrency;
+
     function updatePaxText() {
         if (!paxActiveText) return;
         const activeBtn = document.querySelector('.pax-btn.active');
         if (!activeBtn) return;
-        
-        let paxNum = activeBtn.textContent.trim().split(' ')[0];
-        if (isNaN(paxNum) || paxNum === '') paxNum = '1'; 
-        
-        let text = `${paxNum} Pelanggan`;
-        if (currentLang === 'en') text = `${paxNum} Customer${paxNum > 1 ? 's' : ''}`;
-        else if (currentLang === 'cn') text = `${paxNum} 位顾客`;
-        else if (currentLang === 'jp') text = `お客様 ${paxNum}名`;
-        
+        let n = activeBtn.textContent.trim().split(' ')[0];
+        if (isNaN(n) || n === '') n = '1';
+        let text = `${n} Pelanggan`;
+        if (currentLang === 'en') text = `${n} Customer${n > 1 ? 's' : ''}`;
+        else if (currentLang === 'cn') text = `${n} 位顾客`;
+        else if (currentLang === 'jp') text = `お客様 ${n}名`;
         paxActiveText.textContent = text;
     }
 
-    // FUNGSI UNTUK MERENDER KERANJANG (Bisa lebih dari 1 item)
     function updateCheckoutDisplay() {
-        const detailSection = document.querySelector('.detail-section');
-        
-        // Hapus semua item lama (termasuk template statis)
-        detailSection.querySelectorAll('.cart-item').forEach(el => el.remove());
-        
-        let total = 0;
-        
+        const container = document.getElementById('cart-items-container');
+        const totalBox = document.querySelector('.total-box');
+        if (!container || !totalBox) return;
+
+        let subtotal = 0;
+        container.innerHTML = '';
+
         if (cart.length === 0) {
-            detailSection.insertAdjacentHTML('beforeend', `
+            container.innerHTML = `
                 <div class="cart-item">
                     <div class="item-info">
                         <span class="item-cat">-</span>
                         <h3 class="item-name">Belum ada paket dipilih</h3>
                     </div>
-                </div>
-            `);
+                </div>`;
         } else {
-            cart.forEach((item, index) => {
-                total += item.price;
+            cart.forEach((item, i) => {
+                subtotal += item.price;
                 const catName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
                 const durName = translateLabel(item.duration);
-                
-                const html = `
-                    <div class="cart-item" style="margin-bottom: 10px;">
+                container.insertAdjacentHTML('beforeend', `
+                    <div class="cart-item">
                         <div class="item-info">
                             <span class="item-cat">${catName}</span>
                             <h3 class="item-name">${item.service} ${durName}</h3>
                         </div>
                         <div class="item-duration">${durName}</div>
                         <div class="item-price">${formatPriceFull(item.price)}</div>
-                        <button class="btn-remove" onclick="removeCartItem(${index})"><i class="fas fa-times"></i></button>
-                    </div>
-                `;
-                detailSection.insertAdjacentHTML('beforeend', html);
+                        <button class="btn-remove" onclick="removeCartItem(${i})"><i class="fas fa-times"></i></button>
+                    </div>`);
             });
         }
-        
-        document.getElementById('total-amount').textContent = formatPriceFull(total);
+
+        if (activeVoucherData) {
+            if (activeVoucherData.type === 'percent') discountAmount = subtotal * activeVoucherData.value;
+            else discountAmount = activeVoucherData.value;
+            if (discountAmount > subtotal) discountAmount = subtotal;
+        } else {
+            discountAmount = 0;
+        }
+
+        const finalTotal = subtotal - discountAmount;
+        let html = '';
+        if (discountAmount > 0) {
+            html = `
+                <div class="total-row">
+                    <span>${translations[currentLang].subtotal}</span>
+                    <span>${formatPriceFull(subtotal)}</span>
+                </div>
+                <div class="total-row discount">
+                    <span>${translations[currentLang].discount} (${appliedVoucherCode})</span>
+                    <span>-${formatPriceFull(discountAmount)}</span>
+                </div>
+                <div class="total-row final">
+                    <span class="total-label">${translations[currentLang].checkout_total}</span>
+                    <span class="total-amount">${formatPriceFull(finalTotal)}</span>
+                </div>`;
+        } else {
+            html = `
+                <div class="total-row final" style="border:none;margin-top:0;padding-top:0;">
+                    <span class="total-label">${translations[currentLang].checkout_total}</span>
+                    <span class="total-amount">${formatPriceFull(finalTotal)}</span>
+                </div>`;
+        }
+        totalBox.innerHTML = html;
     }
 
-    // FUNGSI UNTUK MENGHAPUS ITEM DARI KERANJANG
-    window.removeCartItem = function(index) {
-        cart.splice(index, 1);
+    window.removeCartItem = function(i) {
+        cart.splice(i, 1);
         updateCheckoutDisplay();
-    }
+    };
 
     function updateAllPrices() {
         priceCards.forEach(card => {
             const activeBtn = card.querySelector('.dur-btn.active');
             if (activeBtn) {
-                const basePrice = parseInt(activeBtn.getAttribute('data-price'));
+                const p = parseInt(activeBtn.getAttribute('data-price'));
                 const amountEl = card.querySelector('.amount');
-                if(amountEl) amountEl.textContent = formatPriceShort(basePrice);
+                if (amountEl) amountEl.textContent = formatPriceShort(p);
             }
         });
-        updateCheckoutDisplay(); // Selalu update render keranjang saat ganti uang/bahasa
+        updateCheckoutDisplay();
     }
 
     function applyLanguage(lang) {
         currentLang = lang;
-        try { localStorage.setItem('andelia_lang', lang); } catch(e){}
-
+        try { localStorage.setItem('andelia_lang', lang); } catch(e) {}
         langBtns.forEach(btn => {
             btn.classList.remove('active');
-            if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
         });
-
         document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
+            const k = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][k]) el.innerHTML = translations[lang][k];
         });
-
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (translations[lang] && translations[lang][key]) el.placeholder = translations[lang][key];
+            const k = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang] && translations[lang][k]) el.placeholder = translations[lang][k];
         });
-
         document.querySelectorAll('.dur-btn').forEach(btn => {
             if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
             const label = btn.getAttribute('data-label');
             btn.textContent = (lang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
         });
-
         const descKeyByCat = {
             cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
             cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
@@ -418,43 +498,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 descEl.textContent = translations[lang][descKey];
             }
         });
-
         updatePaxText();
         updateAllPrices();
     }
 
     function applyCurrency(currency) {
         currentCurrency = currency;
-        try { localStorage.setItem('andelia_currency', currency); } catch(e){}
-        if(currencySelect) currencySelect.value = currency;
+        try { localStorage.setItem('andelia_currency', currency); } catch(e) {}
+        if (currencySelect) currencySelect.value = currency;
         updateAllPrices();
     }
 
-    // =========================================
-    // 3. INITIALIZATION & EVENT LISTENERS
-    // =========================================
+    if (voucherInput) voucherInput.value = '';
+    if (voucherMsg) voucherMsg.style.display = 'none';
+
     langBtns.forEach(btn => btn.addEventListener('click', () => applyLanguage(btn.getAttribute('data-lang'))));
-    if(currencySelect) currencySelect.addEventListener('change', (e) => applyCurrency(e.target.value));
+    if (currencySelect) currencySelect.addEventListener('change', (e) => applyCurrency(e.target.value));
     applyLanguage(currentLang);
 
-    window.switchPage = function(pageId) {
-        document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
-        document.getElementById('page-' + pageId).classList.add('active');
-        window.scrollTo(0, 0);
-    };
-
-    // FITUR TOMBOL "TAMBAH PAKET" (Kembali ke layanan tanpa menghapus keranjang)
-    if(btnAddPackage) {
-        btnAddPackage.addEventListener('click', () => {
-            switchPage('home');
-            setTimeout(() => {
-                const layananSection = document.getElementById('layanan');
-                if(layananSection) layananSection.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        });
-    }
-
-    if(header) {
+    if (header) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
@@ -465,13 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
+            if (navLinks.classList.contains('active')) icon.classList.replace('fa-bars', 'fa-times');
+            else icon.classList.replace('fa-times', 'fa-bars');
         });
-        
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
@@ -481,7 +539,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // SAAT TOMBOL "PESAN PAKET" DIKLIK (PUSH KE KERANJANG)
+    if (btnAddPackage) {
+        btnAddPackage.addEventListener('click', () => {
+            switchPage('home');
+            setTimeout(() => {
+                const s = document.getElementById('layanan');
+                if (s) s.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+    }
+
     priceCards.forEach(card => {
         const durBtns = card.querySelectorAll('.dur-btn');
         const priceDisplay = card.querySelector('.amount');
@@ -491,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', function() {
                 durBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-
                 const newPrice = parseInt(this.getAttribute('data-price'));
                 priceDisplay.classList.remove('price-pulse');
                 void priceDisplay.offsetWidth;
@@ -503,19 +569,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (waBtn) {
             waBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-
                 const serviceName = card.querySelector('.service-title').textContent;
                 const categoryText = card.querySelector('.category').getAttribute('data-i18n') || card.querySelector('.category').textContent;
                 const activeBtn = card.querySelector('.dur-btn.active');
-                
-                // Tambahkan ke array cart
-                cart.push({ 
-                    category: categoryText, 
-                    service: serviceName, 
-                    duration: activeBtn.getAttribute('data-label'), 
-                    price: parseInt(activeBtn.getAttribute('data-price')) 
+                cart.push({
+                    category: categoryText,
+                    service: serviceName,
+                    duration: activeBtn.getAttribute('data-label'),
+                    price: parseInt(activeBtn.getAttribute('data-price'))
                 });
-
                 updateCheckoutDisplay();
                 switchPage('checkout');
             });
@@ -527,12 +589,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.classList.contains('pax-other')) {
                 const promptMsg = translations[currentLang]['checkout_pax_prompt'] || "Masukkan jumlah pelanggan (contoh: 10):";
                 const userInput = prompt(promptMsg);
-                
                 if (userInput !== null && userInput.trim() !== "" && !isNaN(userInput) && parseInt(userInput) > 0) {
                     paxBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     this.innerHTML = `${userInput} <i class="fas fa-chevron-down"></i>`;
-                    this.removeAttribute('data-i18n'); 
+                    this.removeAttribute('data-i18n');
                     updatePaxText();
                 }
             } else {
@@ -551,18 +612,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // =========================================
-    // 7. LOGIKA FORM & SUBMIT WA
-    // =========================================
+    if (btnApplyVoucher) {
+        btnApplyVoucher.addEventListener('click', () => {
+            const code = voucherInput.value.trim().toUpperCase();
+            if (!code) return;
+            const found = findActiveVoucher(code);
+            voucherMsg.style.display = 'block';
+            if (found) {
+                activeVoucherData = found;
+                appliedVoucherCode = found.code;
+                voucherMsg.className = 'voucher-msg success';
+                voucherMsg.textContent = `${translations[currentLang].msg_voucher_valid} (${code})`;
+                voucherInput.disabled = true;
+            } else {
+                activeVoucherData = null;
+                appliedVoucherCode = null;
+                voucherMsg.className = 'voucher-msg error';
+                voucherMsg.textContent = translations[currentLang].msg_voucher_invalid;
+            }
+            updateCheckoutDisplay();
+        });
+    }
+
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
             if (cart.length === 0) {
                 alert("Silakan pilih layanan terlebih dahulu di halaman utama.");
                 return;
             }
-
             const custName = document.getElementById('cust-name').value;
             const custPhone = document.getElementById('cust-phone').value;
             const custAddress = document.getElementById('cust-address').value;
@@ -571,44 +649,35 @@ document.addEventListener('DOMContentLoaded', () => {
             const paymentMethod = document.querySelector('.payment-toggle .toggle-btn.active').getAttribute('data-value');
             const source = document.getElementById('source').value;
             const notes = document.getElementById('notes').value;
-            
+
             let selectedPax = "1";
             const activePaxBtn = document.querySelector('.pax-btn.active');
             if (activePaxBtn) {
-                let paxText = activePaxBtn.textContent.trim().split(' ')[0];
-                if (!isNaN(paxText)) selectedPax = paxText;
+                let p = activePaxBtn.textContent.trim().split(' ')[0];
+                if (!isNaN(p)) selectedPax = p;
             }
-
             const genderPemesan = document.querySelector('.gender-options .gender-group:nth-child(1) .toggle-btn.active').getAttribute('data-value');
             const genderTerapis = document.querySelector('.gender-options .gender-group:nth-child(2) .toggle-btn.active').getAttribute('data-value');
-
             const adminPhone = "6285817487847";
-            
             const greeting = translations[currentLang].wa_message;
 
-            let total = 0;
+            let subtotal = 0;
             let itemsText = '';
-            
-            // LOOPING SEMUA PAKET YANG ADA DI KERANJANG UNTUK PESAN WA
             cart.forEach((item, i) => {
-                total += item.price;
+                subtotal += item.price;
                 const cName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
                 const dName = translateLabel(item.duration);
                 itemsText += `${i+1}. ${item.service} (${dName}) - ${formatPriceFull(item.price)}\n`;
             });
+            const finalTotal = subtotal - discountAmount;
 
-            let priceMessage = `*TOTAL HARGA: ${formatPriceFull(total)}*`;
-            if (currentCurrency !== 'IDR') {
-                let totalIDR = cart.reduce((sum, item) => sum + item.price, 0);
-                priceMessage += ` (approx. Rp ${totalIDR.toLocaleString('id-ID')})`;
-            }
+            let priceMessage = `Subtotal: ${formatPriceFull(subtotal)}\n`;
+            if (discountAmount > 0) priceMessage += `Diskon (${appliedVoucherCode}): -${formatPriceFull(discountAmount)}\n`;
+            priceMessage += `*TOTAL AKHIR: ${formatPriceFull(finalTotal)}*`;
+            if (currentCurrency !== 'IDR') priceMessage += `\n(approx. Rp ${finalTotal.toLocaleString('id-ID')})`;
 
             let message = `${greeting}\n\n`;
-            
-            message += `*--- DETAIL PESANAN ---*\n`;
-            message += itemsText;
-            message += `\n${priceMessage}\n\n`;
-            
+            message += `*--- DETAIL PESANAN ---*\n${itemsText}\n${priceMessage}\n\n`;
             message += `*--- DATA PELANGGAN ---*\n`;
             message += `Nama: ${custName}\n`;
             message += `No. WhatsApp: +62${custPhone}\n`;
@@ -616,27 +685,16 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Gender Pemesan: ${genderPemesan}\n`;
             message += `Gender Terapis: ${genderTerapis}\n`;
             message += `Jumlah Pelanggan (PAX): ${selectedPax}\n\n`;
-
             message += `*--- JADWAL & PEMBAYARAN ---*\n`;
-            message += `Tanggal: ${bookDate}\n`;
-            message += `Jam: ${bookTime}\n`;
-            message += `Pembayaran: ${paymentMethod}\n`;
-            message += `Tahu dari: ${source}\n`;
-            
+            message += `Tanggal: ${bookDate}\nJam: ${bookTime}\nPembayaran: ${paymentMethod}\nTahu dari: ${source}\n`;
             if (notes.trim() !== '') message += `Catatan: ${notes}\n`;
-
             message += `\nMohon konfirmasi ketersediaan jadwalnya. Terima kasih!`;
 
-            const waUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`;
-            window.open(waUrl, '_blank');
+            window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
         });
     }
 
-    // =========================================
-    // 8. SCROLL REVEAL & FALLBACK
-    // =========================================
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-
     if ('IntersectionObserver' in window && !reducedMotion.matches) {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
@@ -646,68 +704,336 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { threshold: 0.15 });
-        
         revealElements.forEach(el => observer.observe(el));
-
         setTimeout(() => {
-            document.querySelectorAll('.hero-content .reveal').forEach(el => {
-                el.classList.add('in-view');
-            });
+            document.querySelectorAll('.hero-content .reveal').forEach(el => el.classList.add('in-view'));
         }, 100);
-
     } else {
         revealElements.forEach(el => el.classList.add('in-view'));
     }
 
-    // =========================================
-    // 9. NAVBAR ACTIVE STATE (SCROLL SPY & LIQUID)
-    // =========================================
     function moveLiquidIndicator(index) {
-        if (liquidIndicator) {
-            liquidIndicator.style.transform = `translateX(${index * 100}%)`;
-        }
+        if (liquidIndicator) liquidIndicator.style.transform = `translateX(${index * 100}%)`;
     }
-
     function setActiveNav() {
         let current = '';
         const scrollY = window.pageYOffset;
-
         sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 150; 
-
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
+            const h = section.offsetHeight;
+            const top = section.offsetTop - 150;
+            if (scrollY >= top && scrollY < top + h) current = section.getAttribute('id');
         });
-
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-            current = 'kontak';
-        }
-
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) current = 'kontak';
         navItems.forEach(li => {
             li.classList.remove('active');
             if (li.getAttribute('href') === `#${current}`) li.classList.add('active');
         });
-
-        bottomNavItems.forEach((item, index) => {
+        bottomNavItems.forEach((item, i) => {
             item.classList.remove('active');
             if (item.getAttribute('href') === `#${current}`) {
                 item.classList.add('active');
-                moveLiquidIndicator(index);
+                moveLiquidIndicator(i);
+            }
+        });
+    }
+    window.addEventListener('scroll', setActiveNav);
+    bottomNavItems.forEach((item, i) => {
+        item.addEventListener('click', function() {
+            bottomNavItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+            moveLiquidIndicator(i);
+        });
+    });
+    setActiveNav();
+
+    if (window.location.hash === '#admin') handleAdminAccess();
+});
+
+// =========================================
+// ADMIN PANEL
+// =========================================
+function adminInitDashboard() {
+    const sess = sessionStorage.getItem(ADMIN_KEYS.SESSION);
+    if (sess) {
+        try {
+            const parsed = JSON.parse(sess);
+            const uName = document.getElementById('dash-user-name');
+            const uAvatar = document.getElementById('dash-user-avatar');
+            if (uName) uName.textContent = parsed.username;
+            if (uAvatar) uAvatar.textContent = parsed.username.charAt(0).toUpperCase();
+        } catch(e) {}
+    }
+    adminRenderVouchers();
+    adminRenderServices();
+}
+
+function adminFormatRp(n) { return 'Rp ' + Number(n).toLocaleString('id-ID'); }
+
+function adminToast(msg, type = 'success') {
+    const cont = document.getElementById('toast-container');
+    if (!cont) return;
+    const icons = { success: 'fa-check-circle', error: 'fa-times-circle', info: 'fa-info-circle' };
+    const t = document.createElement('div');
+    t.className = 'toast' + (type !== 'success' ? ' ' + type : '');
+    t.innerHTML = `<i class="fas ${icons[type] || icons.success}"></i><span>${msg}</span>`;
+    cont.appendChild(t);
+    setTimeout(() => {
+        t.style.animation = 'toastOut 0.3s ease forwards';
+        setTimeout(() => t.remove(), 300);
+    }, 2800);
+}
+
+let _adminConfirmCb = null;
+function adminConfirm(title, message, onOk) {
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-message').textContent = message;
+    document.getElementById('confirm-modal').classList.add('show');
+    _adminConfirmCb = onOk;
+}
+function closeConfirm() {
+    document.getElementById('confirm-modal').classList.remove('show');
+    _adminConfirmCb = null;
+}
+window.closeConfirm = closeConfirm;
+
+// Voucher
+function adminRenderVouchers() {
+    const list = getVouchers();
+    const tbody = document.getElementById('dash-voucher-tbody');
+    const empty = document.getElementById('dash-voucher-empty');
+    const count = document.getElementById('dash-voucher-count');
+    if (!tbody) return;
+    count.textContent = list.length;
+    if (list.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+    tbody.innerHTML = list.map(v => `
+        <tr>
+            <td><strong style="color:var(--olive);font-size:1rem;">${v.code}</strong></td>
+            <td>${v.type === 'percent' ? 'Persen' : 'Nominal'}</td>
+            <td><strong>${v.type === 'percent' ? (v.value * 100) + '%' : adminFormatRp(v.value)}</strong></td>
+            <td><span class="badge ${v.is_active ? 'on' : 'off'}">${v.is_active ? 'Aktif' : 'Nonaktif'}</span></td>
+            <td>
+                <div class="actions-cell">
+                    <button class="btn-sm btn-toggle" onclick="adminToggleVoucher(${v.id})">
+                        <i class="fas fa-power-off"></i> ${v.is_active ? 'Off' : 'On'}
+                    </button>
+                    <button class="btn-sm btn-delete" onclick="adminDeleteVoucher(${v.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>`).join('');
+}
+
+window.adminToggleVoucher = function(id) {
+    const list = getVouchers();
+    const v = list.find(x => x.id === id);
+    if (v) {
+        v.is_active = !v.is_active;
+        saveVouchers(list);
+        adminRenderVouchers();
+        adminToast('Status diubah', 'info');
+    }
+};
+
+window.adminDeleteVoucher = function(id) {
+    const list = getVouchers();
+    const v = list.find(x => x.id === id);
+    if (!v) return;
+    adminConfirm('Hapus Voucher?', `Kode "${v.code}" akan dihapus permanen.`, () => {
+        saveVouchers(list.filter(x => x.id !== id));
+        adminRenderVouchers();
+        adminToast('Voucher dihapus');
+    });
+};
+
+window.openVoucherForm = function() {
+    document.getElementById('dash-voucher-form').classList.add('show');
+    document.getElementById('dash-v-code').focus();
+};
+window.closeVoucherForm = function() {
+    document.getElementById('dash-voucher-form').classList.remove('show');
+};
+
+// Service
+function adminRenderServices() {
+    const list = getServices();
+    const tbody = document.getElementById('dash-service-tbody');
+    const empty = document.getElementById('dash-service-empty');
+    const count = document.getElementById('dash-service-count');
+    if (!tbody) return;
+    count.textContent = list.length;
+    if (list.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+    tbody.innerHTML = list.map(s => `
+        <tr>
+            <td><strong style="color:var(--olive);font-size:0.8rem;">${s.category}</strong></td>
+            <td><strong>${s.name}</strong><br><small style="color:var(--muted);">${s.description || ''}</small></td>
+            <td>
+                <div class="option-list-dash">
+                    ${s.options.map(o => `<div>${o.label} — <strong>${adminFormatRp(o.price)}</strong></div>`).join('')}
+                </div>
+            </td>
+            <td><span class="badge ${s.is_active ? 'on' : 'off'}">${s.is_active ? 'Aktif' : 'Nonaktif'}</span></td>
+            <td>
+                <div class="actions-cell">
+                    <button class="btn-sm btn-toggle" onclick="adminToggleService(${s.id})">
+                        <i class="fas fa-power-off"></i> ${s.is_active ? 'Off' : 'On'}
+                    </button>
+                    <button class="btn-sm btn-delete" onclick="adminDeleteService(${s.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>`).join('');
+}
+
+window.adminToggleService = function(id) {
+    const list = getServices();
+    const s = list.find(x => x.id === id);
+    if (s) {
+        s.is_active = !s.is_active;
+        saveServices(list);
+        adminRenderServices();
+        adminToast('Status diubah', 'info');
+    }
+};
+
+window.adminDeleteService = function(id) {
+    const list = getServices();
+    const s = list.find(x => x.id === id);
+    if (!s) return;
+    adminConfirm('Hapus Layanan?', `Layanan "${s.name}" akan dihapus permanen.`, () => {
+        saveServices(list.filter(x => x.id !== id));
+        adminRenderServices();
+        adminToast('Layanan dihapus');
+    });
+};
+
+window.openServiceForm = function() {
+    document.getElementById('dash-service-form').classList.add('show');
+    document.getElementById('dash-s-category').focus();
+};
+window.closeServiceForm = function() {
+    document.getElementById('dash-service-form').classList.remove('show');
+};
+window.addOptionRowDash = function() {
+    const c = document.getElementById('dash-s-options');
+    const r = document.createElement('div');
+    r.className = 'option-row-dash';
+    r.innerHTML = `
+        <input type="text" class="opt-label-dash" placeholder="90 Menit">
+        <input type="number" class="opt-price-dash" placeholder="175000">
+        <button type="button" class="btn-remove-opt-dash" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+    `;
+    c.appendChild(r);
+};
+function resetOptionRowsDash() {
+    document.getElementById('dash-s-options').innerHTML = `
+        <div class="option-row-dash">
+            <input type="text" class="opt-label-dash" placeholder="60 Menit">
+            <input type="number" class="opt-price-dash" placeholder="125000">
+            <button type="button" class="btn-remove-opt-dash" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+        </div>
+    `;
+}
+
+// Admin init on load
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('admin-login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('admin-username').value.trim();
+            const p = document.getElementById('admin-password').value;
+            const err = document.getElementById('admin-login-error');
+            if (u === DEFAULT_ADMIN.username && p === DEFAULT_ADMIN.password) {
+                sessionStorage.setItem(ADMIN_KEYS.SESSION, JSON.stringify({ username: u, loginAt: new Date().toISOString() }));
+                adminInitDashboard();
+                switchPage('admin-dashboard');
+            } else {
+                err.textContent = 'Username atau password salah.';
+                err.style.display = 'block';
+                setTimeout(() => err.style.display = 'none', 4000);
             }
         });
     }
 
-    window.addEventListener('scroll', setActiveNav);
-    
-    bottomNavItems.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            bottomNavItems.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
-            moveLiquidIndicator(index);
+    const okBtn = document.getElementById('confirm-ok');
+    if (okBtn) {
+        okBtn.addEventListener('click', () => {
+            if (_adminConfirmCb) _adminConfirmCb();
+            closeConfirm();
+        });
+    }
+
+    document.querySelectorAll('.dash-tab-btn[data-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tab = btn.getAttribute('data-tab');
+            document.querySelectorAll('.dash-tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('dash-panel-' + tab).classList.add('active');
         });
     });
 
-    setActiveNav(); 
+    const vForm = document.getElementById('dash-voucher-form-el');
+    if (vForm) {
+        vForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const code = document.getElementById('dash-v-code').value.trim().toUpperCase();
+            const type = document.getElementById('dash-v-type').value;
+            const valueRaw = parseFloat(document.getElementById('dash-v-value').value);
+            if (!code || isNaN(valueRaw) || valueRaw <= 0) return adminToast('Isi data dengan benar', 'error');
+            const list = getVouchers();
+            if (list.some(v => v.code === code)) return adminToast('Kode sudah ada!', 'error');
+            list.push({
+                id: Date.now(), code, type,
+                value: type === 'percent' ? valueRaw / 100 : valueRaw,
+                is_active: true, createdAt: new Date().toISOString()
+            });
+            saveVouchers(list);
+            adminRenderVouchers();
+            closeVoucherForm();
+            vForm.reset();
+            adminToast('Voucher ditambahkan');
+        });
+    }
+
+    const sForm = document.getElementById('dash-service-form-el');
+    if (sForm) {
+        sForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const category = document.getElementById('dash-s-category').value.trim();
+            const name = document.getElementById('dash-s-name').value.trim();
+            const desc = document.getElementById('dash-s-desc').value.trim();
+            if (!category || !name) return adminToast('Kategori & nama wajib', 'error');
+            const options = [];
+            document.querySelectorAll('#dash-s-options .option-row-dash').forEach(row => {
+                const label = row.querySelector('.opt-label-dash').value.trim();
+                const price = parseFloat(row.querySelector('.opt-price-dash').value);
+                if (label && !isNaN(price) && price > 0) options.push({ label, price });
+            });
+            if (options.length === 0) return adminToast('Minimal 1 pilihan durasi', 'error');
+            const list = getServices();
+            list.push({
+                id: Date.now(), category, name, description: desc,
+                options, is_active: true, createdAt: new Date().toISOString()
+            });
+            saveServices(list);
+            adminRenderServices();
+            closeServiceForm();
+            sForm.reset();
+            resetOptionRowsDash();
+            adminToast('Layanan ditambahkan');
+        });
+    }
 });
