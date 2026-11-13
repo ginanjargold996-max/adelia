@@ -262,9 +262,9 @@ ul { list-style: none; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(48, 59, 44, 0.7), rgba(48, 59, 44, 0.5)); z-index: -1; }
 
 .hero-content { 
-    padding-top: 100px; /* <--- TAMBAHKAN INI (sesuaikan angkanya) */
+    /* Ganti padding-nya dengan cara yang benar seperti ini */
+    padding: 150px 20px 0 20px; /* 150px untuk atas, 20px kiri-kanan, 0 untuk bawah */
     max-width: 900px; 
-    padding: 0 20px; 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -556,7 +556,9 @@ ul { list-style: none; }
     .brand-logo { height: 45px; }
     .floating-header.scrolled .brand-logo-container { height: 35px; }
     .floating-header.scrolled .brand-logo { height: 35px; }
-
+    .hero-content { padding-top: 110px; } /* Jarak atas untuk di HP */
+    .hero-content h1 { font-size: 2.2rem; }
+   
     .switcher-group { display: none; } 
     
     .hero-content h1 { font-size: 2.2rem; }
