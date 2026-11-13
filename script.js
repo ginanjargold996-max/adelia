@@ -18,17 +18,10 @@ const translations = {
         price_duration: "DURASI:", price_option: "PILIHAN:", price_type: "JENIS:", price_area: "AREA:",
         price_popular: "TERPOPULER", price_order: "PESAN PAKET",
         
-        cat_body_massage: "RELAXATION MASSAGE", 
-        cat_body_scrub: "BODY SCRUB",
-        cat_body_reflex: "FOOT REFLEXY THERAPY", 
-        cat_combo: "FOOT, HEAD & SHOULDER MASSAGE",
-        cat_nails: "MANICURE PEDICURE", 
-        cat_hair: "HAIR TREATMENT", 
-        cat_acupressure: "ACUPRESSURE / TOTOK",
-        cat_waxing: "WAXING", 
-        cat_breast: "BREAST CARE", 
-        cat_kids: "KIDS MASSAGE", 
-        cat_ratus: "RATUS",
+        cat_body_massage: "RELAXATION MASSAGE", cat_body_scrub: "BODY SCRUB",
+        cat_body_reflex: "FOOT REFLEXY THERAPY", cat_combo: "FOOT, HEAD & SHOULDER MASSAGE",
+        cat_nails: "MANICURE PEDICURE", cat_hair: "HAIR TREATMENT", cat_acupressure: "ACUPRESSURE / TOTOK",
+        cat_waxing: "WAXING", cat_breast: "BREAST CARE", cat_kids: "KIDS MASSAGE", cat_ratus: "RATUS",
 
         desc_relax: "Layanan pijat seluruh badan menggunakan hot stone untuk melancarkan peredaran darah dan melepas penat.",
         desc_foot: "Terapi refleksi kaki dengan hot stone untuk menghilangkan pegal dan lelah pada tubuh Anda.",
@@ -79,17 +72,10 @@ const translations = {
         price_duration: "DURATION:", price_option: "OPTION:", price_type: "TYPE:", price_area: "AREA:",
         price_popular: "MOST POPULAR", price_order: "ORDER PACKAGE",
         
-        cat_body_massage: "RELAXATION MASSAGE", 
-        cat_body_scrub: "BODY SCRUB",
-        cat_body_reflex: "FOOT REFLEXY THERAPY", 
-        cat_combo: "FOOT, HEAD & SHOULDER MASSAGE",
-        cat_nails: "MANICURE PEDICURE", 
-        cat_hair: "HAIR TREATMENT", 
-        cat_acupressure: "ACUPRESSURE / TOTOK",
-        cat_waxing: "WAXING", 
-        cat_breast: "BREAST CARE", 
-        cat_kids: "KIDS MASSAGE", 
-        cat_ratus: "RATUS",
+        cat_body_massage: "RELAXATION MASSAGE", cat_body_scrub: "BODY SCRUB",
+        cat_body_reflex: "FOOT REFLEXY THERAPY", cat_combo: "FOOT, HEAD & SHOULDER MASSAGE",
+        cat_nails: "MANICURE PEDICURE", cat_hair: "HAIR TREATMENT", cat_acupressure: "ACUPRESSURE / TOTOK",
+        cat_waxing: "WAXING", cat_breast: "BREAST CARE", cat_kids: "KIDS MASSAGE", cat_ratus: "RATUS",
         
         desc_relax: "Full body massage using hot stone to improve blood circulation and relieve fatigue.",
         desc_foot: "Foot reflexology therapy with hot stone to relieve body aches and fatigue.",
@@ -140,17 +126,10 @@ const translations = {
         price_duration: "时长:", price_option: "选项:", price_type: "类型:", price_area: "部位:",
         price_popular: "最受欢迎", price_order: "订购套餐",
         
-        cat_body_massage: "放松按摩",
-        cat_body_scrub: "身体磨砂",
-        cat_body_reflex: "足部反射疗法",
-        cat_combo: "足部、头部与肩部按摩",
-        cat_nails: "美甲美足",
-        cat_hair: "头发护理",
-        cat_acupressure: "指压 (Totok)",
-        cat_waxing: "脱毛",
-        cat_breast: "乳房护理",
-        cat_kids: "儿童按摩",
-        cat_ratus: "传统私处护理 (Ratus)",
+        cat_body_massage: "放松按摩", cat_body_scrub: "身体磨砂", cat_body_reflex: "足部反射疗法",
+        cat_combo: "足部、头部与肩部按摩", cat_nails: "美甲美足", cat_hair: "头发护理",
+        cat_acupressure: "指压 (Totok)", cat_waxing: "脱毛", cat_breast: "乳房护理",
+        cat_kids: "儿童按摩", cat_ratus: "传统私处护理 (Ratus)",
         
         desc_relax: "使用热石进行全身按摩，促进血液循环，缓解疲劳。",
         desc_foot: "使用热石进行足底反射疗法，缓解身体酸痛和疲劳。",
@@ -201,17 +180,10 @@ const translations = {
         price_duration: "所要時間:", price_option: "オプション:", price_type: "種類:", price_area: "部位:",
         price_popular: "一番人気", price_order: "パッケージを注文",
         
-        cat_body_massage: "リラクゼーションマッサージ",
-        cat_body_scrub: "ボディスクラブ",
-        cat_body_reflex: "フットリフレクソロジー",
-        cat_combo: "足・頭・肩のマッサージ",
-        cat_nails: "マニキュア・ペディキュア",
-        cat_hair: "ヘアトリートメント",
-        cat_acupressure: "指圧（トトック）",
-        cat_waxing: "脱毛（ワックス）",
-        cat_breast: "バストケア",
-        cat_kids: "キッズマッサージ",
-        cat_ratus: "ラトゥス（伝統ケア）",
+        cat_body_massage: "リラクゼーションマッサージ", cat_body_scrub: "ボディスクラブ", cat_body_reflex: "フットリフレクソロジー",
+        cat_combo: "足・頭・肩のマッサージ", cat_nails: "マニキュア・ペディキュア", cat_hair: "ヘアトリートメント",
+        cat_acupressure: "指圧（トトック）", cat_waxing: "脱毛（ワックス）", cat_breast: "バストケア",
+        cat_kids: "キッズマッサージ", cat_ratus: "ラトゥス（伝統ケア）",
         
         desc_relax: "ホットストーンを使用した全身マッサージで、血行を促進し疲労を取り除きます。",
         desc_foot: "ホットストーンを使用した足裏リフレクソロジーで、体の痛みや疲れを和らげます。",
@@ -303,7 +275,8 @@ function formatPriceFull(amountIDR) {
     }).format(converted);
 }
 
-let currentOrder = { category: '', service: '', duration: '', price: 0 };
+// ARRAY UNTUK MENYIMPAN SEMUA PAKET YANG DIPILIH
+let cart = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -325,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.nav-links a');
     const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
     const liquidIndicator = document.getElementById('liquid-indicator');
+    const btnAddPackage = document.querySelector('.btn-add-package');
 
     // =========================================
     // 2. DEFINE FUNCTIONS
@@ -345,19 +319,52 @@ document.addEventListener('DOMContentLoaded', () => {
         paxActiveText.textContent = text;
     }
 
+    // FUNGSI UNTUK MERENDER KERANJANG (Bisa lebih dari 1 item)
     function updateCheckoutDisplay() {
-        const catKey = currentOrder.category;
-        const translatedCat = (translations[currentLang] && translations[currentLang][catKey]) ? translations[currentLang][catKey] : catKey;
+        const detailSection = document.querySelector('.detail-section');
+        
+        // Hapus semua item lama (termasuk template statis)
+        detailSection.querySelectorAll('.cart-item').forEach(el => el.remove());
+        
+        let total = 0;
+        
+        if (cart.length === 0) {
+            detailSection.insertAdjacentHTML('beforeend', `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <span class="item-cat">-</span>
+                        <h3 class="item-name">Belum ada paket dipilih</h3>
+                    </div>
+                </div>
+            `);
+        } else {
+            cart.forEach((item, index) => {
+                total += item.price;
+                const catName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
+                const durName = translateLabel(item.duration);
+                
+                const html = `
+                    <div class="cart-item" style="margin-bottom: 10px;">
+                        <div class="item-info">
+                            <span class="item-cat">${catName}</span>
+                            <h3 class="item-name">${item.service} ${durName}</h3>
+                        </div>
+                        <div class="item-duration">${durName}</div>
+                        <div class="item-price">${formatPriceFull(item.price)}</div>
+                        <button class="btn-remove" onclick="removeCartItem(${index})"><i class="fas fa-times"></i></button>
+                    </div>
+                `;
+                detailSection.insertAdjacentHTML('beforeend', html);
+            });
+        }
+        
+        document.getElementById('total-amount').textContent = formatPriceFull(total);
+    }
 
-        document.getElementById('item-category').textContent = translatedCat;
-        
-        const translatedDur = translateLabel(currentOrder.duration);
-        document.getElementById('item-name').textContent = `${currentOrder.service} ${translatedDur}`;
-        document.getElementById('item-duration').textContent = translatedDur;
-        
-        const priceStr = formatPriceFull(currentOrder.price);
-        document.getElementById('item-price').textContent = priceStr;
-        document.getElementById('total-amount').textContent = priceStr;
+    // FUNGSI UNTUK MENGHAPUS ITEM DARI KERANJANG
+    window.removeCartItem = function(index) {
+        cart.splice(index, 1);
+        updateCheckoutDisplay();
     }
 
     function updateAllPrices() {
@@ -369,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(amountEl) amountEl.textContent = formatPriceShort(basePrice);
             }
         });
-        if (currentOrder.service) updateCheckoutDisplay();
+        updateCheckoutDisplay(); // Selalu update render keranjang saat ganti uang/bahasa
     }
 
     function applyLanguage(lang) {
@@ -392,14 +399,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('.dur-btn').forEach(btn => {
-            // Simpan teks asli dari HTML sekali saja (mis. "SESI TUNGGAL", "SESI RATUS")
             if (!btn.dataset.orig) btn.dataset.orig = btn.textContent.trim();
             const label = btn.getAttribute('data-label');
-            // ID memakai teks asli HTML; bahasa lain memakai label yang diterjemahkan
             btn.textContent = (lang === 'id' || !label) ? btn.dataset.orig : translateLabel(label).toUpperCase();
         });
 
-        // Deskripsi layanan ikut berganti bahasa (kunci desc_* di kamus)
         const descKeyByCat = {
             cat_body_massage: 'desc_relax', cat_body_scrub: 'desc_scrub', cat_body_reflex: 'desc_foot',
             cat_combo: 'desc_combo', cat_nails: 'desc_nails', cat_hair: 'desc_hair',
@@ -439,6 +443,17 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(0, 0);
     };
 
+    // FITUR TOMBOL "TAMBAH PAKET" (Kembali ke layanan tanpa menghapus keranjang)
+    if(btnAddPackage) {
+        btnAddPackage.addEventListener('click', () => {
+            switchPage('home');
+            setTimeout(() => {
+                const layananSection = document.getElementById('layanan');
+                if(layananSection) layananSection.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+    }
+
     if(header) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) header.classList.add('scrolled');
@@ -466,6 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // SAAT TOMBOL "PESAN PAKET" DIKLIK (PUSH KE KERANJANG)
     priceCards.forEach(card => {
         const durBtns = card.querySelectorAll('.dur-btn');
         const priceDisplay = card.querySelector('.amount');
@@ -492,12 +508,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const categoryText = card.querySelector('.category').getAttribute('data-i18n') || card.querySelector('.category').textContent;
                 const activeBtn = card.querySelector('.dur-btn.active');
                 
-                currentOrder = { 
+                // Tambahkan ke array cart
+                cart.push({ 
                     category: categoryText, 
                     service: serviceName, 
                     duration: activeBtn.getAttribute('data-label'), 
                     price: parseInt(activeBtn.getAttribute('data-price')) 
-                };
+                });
 
                 updateCheckoutDisplay();
                 switchPage('checkout');
@@ -534,11 +551,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // =========================================
+    // 7. LOGIKA FORM & SUBMIT WA
+    // =========================================
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            if (!currentOrder.service) {
+            if (cart.length === 0) {
                 alert("Silakan pilih layanan terlebih dahulu di halaman utama.");
                 return;
             }
@@ -565,30 +585,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const adminPhone = "6285817487847";
             
             const greeting = translations[currentLang].wa_message;
-            const catKey = currentOrder.category;
-            const translatedCat = (translations[currentLang] && translations[currentLang][catKey]) ? translations[currentLang][catKey] : catKey;
 
-            const formattedPrice = formatPriceFull(currentOrder.price);
-            let priceMessage = `Total Harga: ${formattedPrice}`;
-            if (currentCurrency !== 'IDR') priceMessage += ` (approx. Rp ${currentOrder.price.toLocaleString('id-ID')})`;
+            let total = 0;
+            let itemsText = '';
+            
+            // LOOPING SEMUA PAKET YANG ADA DI KERANJANG UNTUK PESAN WA
+            cart.forEach((item, i) => {
+                total += item.price;
+                const cName = (translations[currentLang] && translations[currentLang][item.category]) ? translations[currentLang][item.category] : item.category;
+                const dName = translateLabel(item.duration);
+                itemsText += `${i+1}. ${item.service} (${dName}) - ${formatPriceFull(item.price)}\n`;
+            });
 
-            const waDuration = translateLabel(currentOrder.duration);
+            let priceMessage = `*TOTAL HARGA: ${formatPriceFull(total)}*`;
+            if (currentCurrency !== 'IDR') {
+                let totalIDR = cart.reduce((sum, item) => sum + item.price, 0);
+                priceMessage += ` (approx. Rp ${totalIDR.toLocaleString('id-ID')})`;
+            }
 
             let message = `${greeting}\n\n`;
             
             message += `*--- DETAIL PESANAN ---*\n`;
-            message += `Layanan: ${currentOrder.service}\n`;
-            message += `Kategori: ${translatedCat}\n`;
-            message += `Durasi: ${waDuration}\n`;
-            message += `Jumlah Pelanggan (PAX): ${selectedPax}\n`; 
-            message += `${priceMessage}\n\n`;
+            message += itemsText;
+            message += `\n${priceMessage}\n\n`;
             
             message += `*--- DATA PELANGGAN ---*\n`;
             message += `Nama: ${custName}\n`;
             message += `No. WhatsApp: +62${custPhone}\n`;
             message += `Alamat: ${custAddress}\n`;
             message += `Gender Pemesan: ${genderPemesan}\n`;
-            message += `Gender Terapis: ${genderTerapis}\n\n`;
+            message += `Gender Terapis: ${genderTerapis}\n`;
+            message += `Jumlah Pelanggan (PAX): ${selectedPax}\n\n`;
 
             message += `*--- JADWAL & PEMBAYARAN ---*\n`;
             message += `Tanggal: ${bookDate}\n`;
@@ -606,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 4. SCROLL REVEAL & FALLBACK
+    // 8. SCROLL REVEAL & FALLBACK
     // =========================================
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -633,7 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 5. NAVBAR ACTIVE STATE (SCROLL SPY & LIQUID)
+    // 9. NAVBAR ACTIVE STATE (SCROLL SPY & LIQUID)
     // =========================================
     function moveLiquidIndicator(index) {
         if (liquidIndicator) {
